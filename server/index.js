@@ -4,7 +4,7 @@ import {recognitionPrompt,normalizeRecognitionResult} from './recognition-result
 import {normalizeClassification,normalizeRarity,normalizeProtection} from '../src/species-classification.js';
 import {prepareRecognitionImage} from './recognition-image.js';
 import {createSettings} from './settings.js';
-import express from 'express';import multer from 'multer';import fs from 'node:fs/promises';import path from 'node:path';import {randomUUID} from 'node:crypto';import {saveSpecies} from './store.js';
+import express from 'express';import multer from 'multer';import fs from 'node:fs/promises';import path from 'node:path';import {randomUUID} from 'node:crypto';import {saveSpecies,editSpecies} from './store.js';
 const root=process.cwd(), data=path.join(root,'.data');await fs.mkdir(path.join(data,'photos'),{recursive:true});
 const settings=await createSettings(data);
 const app=express();app.use(express.json({limit:'100kb'}));app.use('/photos',express.static(path.join(data,'photos')));
@@ -50,6 +50,26 @@ app.post('/api/collection/rematch',(req,res,next)=>{
    await fs.writeFile(path.join(data,'rematch-report-'+stamp+'.json'),JSON.stringify(result.changes,null,2),{mode:0o600});
   }
   res.json(result);
+ });writeQueue=job.catch(()=>{});job.catch(next);
+});
+app.put('/api/collection/:id',(req,res,next)=>{
+ if(!req.is('application/json'))return res.status(415).json({error:'需要 JSON 请求'});
+ const origin=req.get('origin');
+ if(req.get('sec-fetch-site')==='cross-site')return res.status(403).json({error:'只允许本站编辑收藏'});
+ if(origin){try{if(new URL(origin).host!==req.get('host'))return res.status(403).json({error:'只允许本站编辑收藏'});}catch{return res.status(403).json({error:'无效来源'});}}
+ const job=writeQueue.then(async()=>{
+  const input=req.body||{};
+  if(!['鸟类','动物','植物','昆虫','菌类'].includes(input.category))return res.status(400).json({error:'请选择分类'});
+  const items=await read(),existing=items.find(item=>item.id===req.params.id);
+  const fields={name:input.name,latin:input.latin,category:input.category,rarity:normalizeRarity(input.rarity),protection:normalizeProtection(input.protection),description:String(input.description||'').slice(0,3000),habitat:String(input.habitat||'').slice(0,1000),note:String(input.note||'').slice(0,3000)};
+  const identityChanged=existing&&(String(fields.name||'').trim()!==existing.name||String(fields.latin||'').trim()!==existing.latin||fields.category!==existing.category);
+  const manual=input.manualProtection===true;
+  const result=editSpecies(items,req.params.id,fields);
+  if(result.error)return res.status(result.status).json({error:result.error});
+  result.item=applyCatalogue({...result.item,protectionMethod:manual?'manual-verified':identityChanged||existing.protectionMethod==='manual-verified'?'unverified':existing.protectionMethod,protection:!manual&&identityChanged?'未核实':fields.protection});
+  result.items=result.items.map(item=>item.id===result.item.id?result.item:item);
+  const temp=path.join(data,'collection.tmp');await fs.writeFile(temp,JSON.stringify(result.items,null,2));await fs.rename(temp,path.join(data,'collection.json'));
+  res.json(result.item);
  });writeQueue=job.catch(()=>{});job.catch(next);
 });
 app.post('/api/collection',(req,res,next)=>{const job=writeQueue.then(async()=>{const input=req.body;const file=path.basename(String(input.photo||''));if(input.photo!='/photos/'+file||!/^[a-f0-9-]+\.(jpeg|png|webp)$/.test(file))return res.status(400).json({error:'请先上传照片'});await fs.access(path.join(data,'photos',file));if(!['鸟类','动物','植物','昆虫','菌类'].includes(input.category))return res.status(400).json({error:'请选择分类'});const result=saveSpecies(await read(),applyCatalogue({name:input.name,latin:input.latin,photo:input.photo,category:input.category,description:String(input.description||''),habitat:String(input.habitat||''),rarity:normalizeRarity(input.rarity),protection:normalizeProtection(input.protection),note:String(input.note||'')}),input.replace===true);if(result.duplicate)return res.status(409).json(result);const temp=path.join(data,'collection.tmp');await fs.writeFile(temp,JSON.stringify(result.items,null,2));await fs.rename(temp,path.join(data,'collection.json'));res.json(result.item);});writeQueue=job.catch(()=>{});job.catch(next);});

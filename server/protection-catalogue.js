@@ -25,6 +25,7 @@ export function lookupProtection(item){
  return {...provenance,protection:entry.protection};
 }
 export function applyCatalogue(item,{recognition=false}={}){
+ if(!recognition&&item.protectionMethod==='manual-verified')return {...item,protectionSource:'用户手动核实',protectionSourceUrl:null,protectionVersion:null,protectionNote:null};
  const match=(!recognition||item.uncertain===false)&&lookupProtection(item);
  if(match)return {...item,...match};
  const result={...item,protectionMethod:'unverified',protectionSource:'未匹配名录或物种不确定，需核实',protectionSourceUrl:null,protectionVersion:null,protectionNote:null};
