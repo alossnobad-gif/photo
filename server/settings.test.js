@@ -17,7 +17,10 @@ test('settings persist, remain private in status, preserve blank key and overrid
  await store.update({apiKey:'',model:'qwen-vl-max'});
  const restored=await createSettings(dir,{DASHSCOPE_API_KEY:'other-key'});
  assert.equal(restored.current().apiKey,'test-key');assert.equal(restored.current().model,'qwen-vl-max');
- await assert.rejects(store.update({apiKey:'bad key'}));
- assert.equal(store.current().apiKey,'test-key');
+ await store.update({apiKey:' \"sk-test.\u200Babc\n123\" '});
+ assert.equal(store.current().apiKey,'sk-test.abc123');
+ await assert.rejects(store.update({apiKey:'密钥中文'}));
+ await assert.rejects(store.update({apiKey:'a'.repeat(513)}));
+ assert.equal(store.current().apiKey,'sk-test.abc123');
  }finally{await fs.rm(dir,{recursive:true,force:true});}
 });

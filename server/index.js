@@ -15,7 +15,7 @@ app.put('/api/settings',async(req,res)=>{
   if(req.get('sec-fetch-site')==='cross-site')return res.status(403).json({error:'只允许本站修改设置'});
   if(origin){try{if(new URL(origin).host!==req.get('host'))return res.status(403).json({error:'只允许本站修改设置'});}catch{return res.status(403).json({error:'无效来源'});}}
   try{res.json(await settings.update(req.body));}catch(error){
-  const validationMessages=['无效设置','密钥格式不正确','请粘贴完整密钥，不要包含空格','模型名称格式不正确','请先填写千问 API Key'];
+  const validationMessages=['无效设置','密钥格式不正确','内容超过密钥长度，请只复制 API Key，不要复制整段代码','内容含非英文字符，请只复制 API Key','模型名称格式不正确','请先填写千问 API Key'];
   if(validationMessages.includes(error.message))return res.status(400).json({error:error.message});
   console.error('Settings save failed:',error.code||'UNKNOWN');
   if(['EACCES','EPERM','EROFS'].includes(error.code))return res.status(500).json({error:'服务器数据目录没有写入权限，请修复 /opt/photo/.data 的权限后重试。'});

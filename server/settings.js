@@ -13,8 +13,10 @@ export async function createSettings(directory, environment = process.env) {
     const task = queue.then(async () => {
       if (!input || typeof input !== 'object' || Array.isArray(input)) throw new Error('无效设置');
       if (input.apiKey !== undefined && typeof input.apiKey !== 'string') throw new Error('密钥格式不正确');
-      const apiKey = (input.apiKey || '').trim();
-      if (apiKey && (apiKey.length > 512 || !/^[A-Za-z0-9_-]+$/.test(apiKey))) throw new Error('请粘贴完整密钥，不要包含空格');
+      let apiKey = (input.apiKey || '').replace(/[\s\u200B-\u200D\u2060\uFEFF]/gu, '');
+      if ((apiKey.startsWith('"') && apiKey.endsWith('"')) || (apiKey.startsWith("'") && apiKey.endsWith("'"))) apiKey = apiKey.slice(1, -1);
+      if (apiKey.length > 512) throw new Error('内容超过密钥长度，请只复制 API Key，不要复制整段代码');
+      if (apiKey && !/^[\x21-\x7E]+$/.test(apiKey)) throw new Error('内容含非英文字符，请只复制 API Key');
       const model = String(input.model || current().model).trim();
       if (!/^[A-Za-z0-9_.-]{1,100}$/.test(model)) throw new Error('模型名称格式不正确');
       const next = {...saved,model};
