@@ -5,3 +5,5 @@
 .protection-badge{display:inline-block;margin:7px 0 0;padding:3px 8px;border:1px solid #b99b62;border-radius:4px;font-size:11px;color:#886737}
 
 .rematch-control{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:12px 0;font-size:12px}.rematch-control button{padding:8px 12px;border:1px solid var(--line);border-radius:5px;background:transparent;color:var(--green)}.rematch-control span{color:#85877c}
+
+.detail-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.detail-identity{min-width:0}.detail-name{display:flex;align-items:center;flex-wrap:wrap;gap:12px}.detail-name h2{overflow-wrap:anywhere}.detail-identity .latin{overflow-wrap:anywhere}.detail-edit{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex-shrink:0;min-height:44px;padding:8px 12px;margin-top:2px;border:1px solid var(--line);border-radius:22px;background:transparent;color:#61705e;font:13px system-ui,sans-serif}.detail-edit:hover{background:#e9eddf;border-color:#a9b399;color:var(--green)}@media(max-width:600px){.detail-heading{gap:10px}.detail-name{gap:8px}.detail-edit{padding:8px 10px}}
