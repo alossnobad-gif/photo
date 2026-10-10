@@ -1,0 +1,2 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {summarizeCollection} from '../src/collection-stats.js';
+test('collection stats distinguish unknown rarity and cap personal progress',()=>{const s=summarizeCollection([{category:'鸟类',rarity:'常见'},{category:'鸟类',rarity:'少见'},{category:'植物',rarity:'未知'}],2);assert.equal(s.total,3);assert.equal(s.common,1);assert.equal(s.rare,1);assert.equal(s.unknown,1);assert.equal(s.byCategory['鸟类'],2);assert.equal(s.progress,100);assert.equal(s.goal,2);assert.equal(summarizeCollection([]).progress,0);});
