@@ -14,7 +14,14 @@ app.put('/api/settings',async(req,res)=>{
   const origin=req.get('origin');
   if(req.get('sec-fetch-site')==='cross-site')return res.status(403).json({error:'只允许本站修改设置'});
   if(origin){try{if(new URL(origin).host!==req.get('host'))return res.status(403).json({error:'只允许本站修改设置'});}catch{return res.status(403).json({error:'无效来源'});}}
-  try{res.json(await settings.update(req.body));}catch{return res.status(400).json({error:'保存失败，请检查密钥格式、模型名称及服务器数据目录权限。'});}
+  try{res.json(await settings.update(req.body));}catch(error){
+  const validationMessages=['无效设置','密钥格式不正确','请粘贴完整密钥，不要包含空格','模型名称格式不正确','请先填写千问 API Key'];
+  if(validationMessages.includes(error.message))return res.status(400).json({error:error.message});
+  console.error('Settings save failed:',error.code||'UNKNOWN');
+  if(['EACCES','EPERM','EROFS'].includes(error.code))return res.status(500).json({error:'服务器数据目录没有写入权限，请修复 /opt/photo/.data 的权限后重试。'});
+  if(error.code==='ENOSPC')return res.status(500).json({error:'服务器磁盘空间不足，配置尚未保存。'});
+  return res.status(500).json({error:'服务器无法保存配置，请查看服务日志中的 Settings save failed 错误代码。'});
+}
 });
 app.get('/api/collection',async(req,res,next)=>{try{res.json(await read());}catch(e){next(e);}});
 app.post('/api/upload',upload.single('photo'),async(req,res,next)=>{try{if(!req.file)return res.status(400).json({error:'请上传 JPG、PNG 或 WebP 照片（最大 12 MB）'});const signatures={jpeg:b=>b[0]===255&&b[1]===216,png:b=>b.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),webp:b=>b.toString('ascii',0,4)==='RIFF'&&b.toString('ascii',8,12)==='WEBP'};const ext=req.file.mimetype.split('/')[1];if(!signatures[ext](req.file.buffer))return res.status(400).json({error:'照片格式不正确'});const file=randomUUID()+'.'+ext;await fs.writeFile(path.join(data,'photos',file),req.file.buffer);res.json({photo:'/photos/'+file});}catch(e){next(e);}});
