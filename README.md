@@ -46,3 +46,7 @@ git pull --ff-only origin main && npm ci && npm run build && npm test && systemc
 ```
 
 更新不删除 `.data` 或 `/etc/nature-photo.env`。新增设置页在手机 390×844 上经系统 Chromium/Playwright 检查输入遮蔽、保存提交与状态更新（写入响应模拟）；服务端持久化及不返回密钥由独立测试验证。真实千问调用仍需用户密钥验证。
+
+## 千问 AI 平台接入
+
+`platform.qianwenai.com` 创建的密钥应选择「千问 AI 平台」，请求地址为用户提供的官方文档中的 `https://maas.qianwenaiapi.com/compatible-mode/v1/chat/completions`，图片示例模型为 `qwen3.8-max`。该平台与阿里云百炼为不同接口选项，不应混用密钥。切换平台时密钥留空保留原密钥，设置持久保存。旧配置继续使用 DashScope，需用户在设置中明确切换。只允许上述两个固定 HTTPS 目的地址。现有图片上传以 Base64 data URL 发送，用户文档示例只展示公网图片 URL；新平台真实调用与 Base64 支持尚待实际验证。

@@ -22,5 +22,11 @@ test('settings persist, remain private in status, preserve blank key and overrid
  await assert.rejects(store.update({apiKey:'密钥中文'}));
  await assert.rejects(store.update({apiKey:'a'.repeat(513)}));
  assert.equal(store.current().apiKey,'sk-test.abc123');
+ await store.update({platform:'qianwenai',apiKey:'',model:'vision-model'});
+ const migrated=await createSettings(dir,{});
+ assert.equal(migrated.current().apiKey,'sk-test.abc123');
+ assert.equal(migrated.current().baseUrl,'https://maas.qianwenaiapi.com/compatible-mode/v1');
+ assert.equal(migrated.status().platform,'qianwenai');
+ await assert.rejects(store.update({platform:'https://attacker.invalid'}));
  }finally{await fs.rm(dir,{recursive:true,force:true});}
 });
