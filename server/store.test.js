@@ -1,0 +1,4 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {saveSpecies} from './store.js';
+const input={name:'普通翠鸟',latin:'Alcedo atthis',photo:'/photos/a.jpeg'};
+test('first discovery, duplicate protection, replacement preserves identity and discovery date',()=>{const first=saveSpecies([],input);assert.equal(first.items.length,1);const duplicate=saveSpecies(first.items,{...input,latin:'  ALCEDO   ATTHIS ',photo:'/photos/b.jpeg'});assert.equal(duplicate.duplicate.photo,input.photo);const replaced=saveSpecies(first.items,{...input,photo:'/photos/b.jpeg'},true);assert.equal(replaced.items.length,1);assert.equal(replaced.item.id,first.item.id);assert.equal(replaced.item.discovered,first.item.discovered);assert.equal(replaced.item.photo,'/photos/b.jpeg');});
+test('incomplete species never unlocks',()=>assert.throws(()=>saveSpecies([],{name:'未知'})));
