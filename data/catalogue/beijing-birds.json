@@ -1,0 +1,3058 @@
+{
+  "id": "beijing-birds",
+  "repository": "https://github.com/Chocoer/birdle",
+  "file": "server/src/data/birds.json",
+  "title": "北京鸟类数据（2021年国保、2023年三有名录公开整理）",
+  "version": "2021 / 2023",
+  "commit": "8fb66f58eefb8ba6189cf8483823ba6956d67888",
+  "upstreamSha256": "a20432dfcf6d02d5effccbe98f12aa49f2c351f976be6ca607b7bcb8f8803470",
+  "retrievedAt": "2026-10-11",
+  "verification": "third-party",
+  "records": [
+    {
+      "name": "大斑啄木鸟",
+      "latin": "Dendrocopos major",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蚁䴕",
+      "latin": "Jynx torquilla",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰头绿啄木鸟",
+      "latin": "Picus canus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "星头啄木鸟",
+      "latin": "Yungipicus canicapillus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "凤头䴙䴘",
+      "latin": "Podiceps cristatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小䴙䴘",
+      "latin": "Tachybaptus ruficollis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通翠鸟",
+      "latin": "Alcedo atthis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通雨燕",
+      "latin": "Apus apus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白腰雨燕",
+      "latin": "Apus pacificus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "戴胜",
+      "latin": "Upupa epops",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红隼",
+      "latin": "Falco tinnunculus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红尾伯劳",
+      "latin": "Lanius cristatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "楔尾伯劳",
+      "latin": "Lanius sphenocercus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑卷尾",
+      "latin": "Dicrurus macrocercus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "太平鸟",
+      "latin": "Bombycilla garrulus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大山雀",
+      "latin": "Parus minor",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "沼泽山雀",
+      "latin": "Poecile palustris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "中华攀雀",
+      "latin": "Remiz consobrinus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄眉柳莺",
+      "latin": "Phylloscopus inornatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄腰柳莺",
+      "latin": "Phylloscopus proregulus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰椋鸟",
+      "latin": "Spodiopsar cineraceus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "金腰燕",
+      "latin": "Cecropis daurica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "家燕",
+      "latin": "Hirundo rustica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "金翅雀",
+      "latin": "Chloris sinica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑尾蜡嘴雀",
+      "latin": "Eophona migratoria",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "燕雀",
+      "latin": "Fringilla montifringilla",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红胁绣眼鸟",
+      "latin": "Zosterops erythropleurus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "暗绿绣眼鸟",
+      "latin": "Zosterops simplex",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "东方大苇莺",
+      "latin": "Acrocephalus orientalis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "北长尾山雀",
+      "latin": "Aegithalos caudatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "银喉长尾山雀",
+      "latin": "Aegithalos glaucogularis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "麻雀",
+      "latin": "Passer montanus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小嘴乌鸦",
+      "latin": "Corvus corone",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "达乌里寒鸦",
+      "latin": "Corvus dauuricus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大嘴乌鸦",
+      "latin": "Corvus macrorhynchos",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰喜鹊",
+      "latin": "Cyanopica cyanus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "喜鹊",
+      "latin": "Pica serica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红嘴蓝鹊",
+      "latin": "Urocissa erythroryncha",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棕头鸦雀",
+      "latin": "Sinosuthora webbiana",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "乌鸫",
+      "latin": "Turdus mandarinus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄喉鹀",
+      "latin": "Emberiza elegans",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小鹀",
+      "latin": "Emberiza pusilla",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰头鹀",
+      "latin": "Emberiza spodocephala",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白头鹎",
+      "latin": "Pycnonotus sinensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "北红尾鸲",
+      "latin": "Phoenicurus auroreus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红胁蓝尾鸲",
+      "latin": "Tarsiger cyanurus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白鹡鸰",
+      "latin": "Motacilla alba",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰鹡鸰",
+      "latin": "Motacilla cinerea",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄鹡鸰",
+      "latin": "Motacilla tschutschensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑枕黄鹂",
+      "latin": "Oriolus chinensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鸳鸯",
+      "latin": "Aix galericulata",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "绿翅鸭",
+      "latin": "Anas crecca",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "绿头鸭",
+      "latin": "Anas platyrhynchos",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑嘴鸭",
+      "latin": "Anas zonorhyncha",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鸿雁",
+      "latin": "Anser cygnoides",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "豆雁",
+      "latin": "Anser fabalis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红头潜鸭",
+      "latin": "Aythya ferina",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "凤头潜鸭",
+      "latin": "Aythya fuligula",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白眼潜鸭",
+      "latin": "Aythya nyroca",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鹊鸭",
+      "latin": "Bucephala clangula",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大天鹅",
+      "latin": "Cygnus cygnus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "罗纹鸭",
+      "latin": "Mareca falcata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "赤颈鸭",
+      "latin": "Mareca penelope",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑头秋沙鸭",
+      "latin": "Mergellus albellus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通秋沙鸭",
+      "latin": "Mergus merganser",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "琵嘴鸭",
+      "latin": "Spatula clypeata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白眉鸭",
+      "latin": "Spatula querquedula",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "赤麻鸭",
+      "latin": "Tadorna ferruginea",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通鸬鹚",
+      "latin": "Phalacrocorax carbo",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "环颈雉",
+      "latin": "Phasianus colchicus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "长耳鸮",
+      "latin": "Asio otus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "纵纹腹小鸮",
+      "latin": "Athene noctua",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红角鸮",
+      "latin": "Otus sunia",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑翅长脚鹬",
+      "latin": "Himantopus himantopus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红嘴鸥",
+      "latin": "Chroicocephalus ridibundus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "金眶鸻",
+      "latin": "Charadrius dubius",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "凤头麦鸡",
+      "latin": "Vanellus vanellus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "矶鹬",
+      "latin": "Actitis hypoleucos",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "扇尾沙锥",
+      "latin": "Gallinago gallinago",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白腰草鹬",
+      "latin": "Tringa ochropus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红脚鹬",
+      "latin": "Tringa totanus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "珠颈斑鸠",
+      "latin": "Spilopelia chinensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰斑鸠",
+      "latin": "Streptopelia decaocto",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "山斑鸠",
+      "latin": "Streptopelia orientalis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "火斑鸠",
+      "latin": "Streptopelia tranquebarica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大杜鹃",
+      "latin": "Cuculus canorus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "四声杜鹃",
+      "latin": "Cuculus micropterus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "噪鹃",
+      "latin": "Eudynamys scolopaceus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大白鹭",
+      "latin": "Ardea alba",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "苍鹭",
+      "latin": "Ardea cinerea",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "池鹭",
+      "latin": "Ardeola bacchus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大麻鳽",
+      "latin": "Botaurus stellaris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "牛背鹭",
+      "latin": "Bubulcus coromandus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白鹭",
+      "latin": "Egretta garzetta",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄斑苇鳽",
+      "latin": "Ixobrychus sinensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "夜鹭",
+      "latin": "Nycticorax nycticorax",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白骨顶",
+      "latin": "Fulica atra",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑水鸡",
+      "latin": "Gallinula chloropus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通鵟",
+      "latin": "Buteo japonicus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑鸢",
+      "latin": "Milvus migrans",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "角䴙䴘",
+      "latin": "Podiceps auritus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑颈䴙䴘",
+      "latin": "Podiceps nigricollis",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "三宝鸟",
+      "latin": "Eurystomus orientalis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑鱼狗",
+      "latin": "Ceryle rudis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蓝翡翠",
+      "latin": "Halcyon pileata",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "冠鱼狗",
+      "latin": "Megaceryle lugubris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通夜鹰",
+      "latin": "Caprimulgus jotaka",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红脚隼",
+      "latin": "Falco amurensis",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰背隼",
+      "latin": "Falco columbarius",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "游隼",
+      "latin": "Falco peregrinus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "燕隼",
+      "latin": "Falco subbuteo",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通䴓",
+      "latin": "Sitta europaea",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "山噪鹛",
+      "latin": "Pterorhinus davidi",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "煤山雀",
+      "latin": "Periparus ater",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "褐头山雀",
+      "latin": "Poecile montanus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "戴菊",
+      "latin": "Regulus regulus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "旋木雀",
+      "latin": "Certhia familiaris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "褐柳莺",
+      "latin": "Phylloscopus fuscatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通朱雀",
+      "latin": "Carpodacus erythrinus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "锡嘴雀",
+      "latin": "Coccothraustes coccothraustes",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑头蜡嘴雀",
+      "latin": "Eophona personata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄雀",
+      "latin": "Spinus spinus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "云雀",
+      "latin": "Alauda arvensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "角百灵",
+      "latin": "Eremophila alpestris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "山麻雀",
+      "latin": "Passer cinnamomeus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "震旦鸦雀",
+      "latin": "Calamornis heudei",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "山鹛",
+      "latin": "Rhopophilus pekinensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑鸫",
+      "latin": "Turdus eunomus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄眉鹀",
+      "latin": "Emberiza chrysophrys",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰眉岩鹀",
+      "latin": "Emberiza cia",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "三道眉草鹀",
+      "latin": "Emberiza cioides",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "栗耳鹀",
+      "latin": "Emberiza fucata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "戈氏岩鹀",
+      "latin": "Emberiza godlewskii",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "苇鹀",
+      "latin": "Emberiza pallasi",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "田鹀",
+      "latin": "Emberiza rustica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白眉鹀",
+      "latin": "Emberiza tristrami",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红喉歌鸲",
+      "latin": "Calliope calliope",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蓝喉歌鸲",
+      "latin": "Luscinia svecica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "树鹨",
+      "latin": "Anthus hodgsoni",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "水鹨",
+      "latin": "Anthus spinoletta",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鹪鹩",
+      "latin": "Troglodytes troglodytes",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "针尾鸭",
+      "latin": "Anas acuta",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "花脸鸭",
+      "latin": "Anas formosa",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰雁",
+      "latin": "Anser anser",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "短嘴豆雁",
+      "latin": "Anser serrirostris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小天鹅",
+      "latin": "Cygnus columbianus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "疣鼻天鹅",
+      "latin": "Cygnus olor",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "赤膀鸭",
+      "latin": "Mareca strepera",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "翘鼻麻鸭",
+      "latin": "Tadorna tadorna",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "石鸡",
+      "latin": "Alectoris chukar",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "短耳鸮",
+      "latin": "Asio flammeus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "雕鸮",
+      "latin": "Bubo bubo",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "北鹰鸮",
+      "latin": "Ninox japonica",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰林鸮",
+      "latin": "Strix nivicolum",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "反嘴鹬",
+      "latin": "Recurvirostra avosetta",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "须浮鸥",
+      "latin": "Chlidonias hybrida",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白翅浮鸥",
+      "latin": "Chlidonias leucopterus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鸥嘴噪鸥",
+      "latin": "Gelochelidon nilotica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "西伯利亚银鸥",
+      "latin": "Larus smithsonianus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通燕鸥",
+      "latin": "Sterna hirundo",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白额燕鸥",
+      "latin": "Sternula albifrons",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "环颈鸻",
+      "latin": "Charadrius alexandrinus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "金斑鸻",
+      "latin": "Pluvialis fulva",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰斑鸻",
+      "latin": "Pluvialis squatarola",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰头麦鸡",
+      "latin": "Vanellus cinereus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红颈滨鹬",
+      "latin": "Calidris ruficollis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "长趾滨鹬",
+      "latin": "Calidris subminuta",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "青脚滨鹬",
+      "latin": "Calidris temminckii",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大沙锥",
+      "latin": "Gallinago megala",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑尾塍鹬",
+      "latin": "Limosa limosa",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "中杓鹬",
+      "latin": "Numenius phaeopus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "丘鹬",
+      "latin": "Scolopax rusticola",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鹤鹬",
+      "latin": "Tringa erythropus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "林鹬",
+      "latin": "Tringa glareola",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "青脚鹬",
+      "latin": "Tringa nebularia",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "泽鹬",
+      "latin": "Tringa stagnatilis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "岩鸽",
+      "latin": "Columba rupestris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小杜鹃",
+      "latin": "Cuculus poliocephalus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "中杜鹃",
+      "latin": "Cuculus saturatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鹰鹃",
+      "latin": "Hierococcyx sparverioides",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "中白鹭",
+      "latin": "Ardea intermedia",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "草鹭",
+      "latin": "Ardea purpurea",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "绿鹭",
+      "latin": "Butorides striata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通秧鸡",
+      "latin": "Rallus indicus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰鹤",
+      "latin": "Grus grus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鹗",
+      "latin": "Pandion haliaetus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "苍鹰",
+      "latin": "Accipiter gentilis",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "日本松雀鹰",
+      "latin": "Accipiter gularis",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "雀鹰",
+      "latin": "Accipiter nisus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "赤腹鹰",
+      "latin": "Accipiter soloensis",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "松雀鹰",
+      "latin": "Accipiter virgatus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "金雕",
+      "latin": "Aquila chrysaetos",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰脸鵟鹰",
+      "latin": "Butastur indicus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "欧亚鵟",
+      "latin": "Buteo buteo",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大鵟",
+      "latin": "Buteo hemilasius",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "毛脚鵟",
+      "latin": "Buteo lagopus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白头鹞",
+      "latin": "Circus aeruginosus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白尾鹞",
+      "latin": "Circus cyaneus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鹊鹞",
+      "latin": "Circus melanoleucos",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "凤头蜂鹰",
+      "latin": "Pernis ptilorhynchus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棕腹啄木鸟",
+      "latin": "Dendrocopos hyperythrus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白背啄木鸟",
+      "latin": "Dendrocopos leucotos",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑啄木鸟",
+      "latin": "Dryocopus martius",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小星头啄木鸟",
+      "latin": "Yungipicus kizuki",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "栗喉蜂虎",
+      "latin": "Merops philippinus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "毛腿沙鸡",
+      "latin": "Syrrhaptes paradoxus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑喉潜鸟",
+      "latin": "Gavia arctica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红喉潜鸟",
+      "latin": "Gavia stellata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "猎隼",
+      "latin": "Falco cherrug",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄爪隼",
+      "latin": "Falco naumanni",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑头䴓",
+      "latin": "Sitta villosa",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰伯劳",
+      "latin": "Lanius borealis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "牛头伯劳",
+      "latin": "Lanius bucephalus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棕背伯劳",
+      "latin": "Lanius schach",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "发冠卷尾",
+      "latin": "Dicrurus hottentottus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰卷尾",
+      "latin": "Dicrurus leucophaeus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小太平鸟",
+      "latin": "Bombycilla japonica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "暗灰鹃鵙",
+      "latin": "Lalage melaschistos",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰山椒鸟",
+      "latin": "Pericrocotus divaricatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "长尾山椒鸟",
+      "latin": "Pericrocotus ethologus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "杂色山雀",
+      "latin": "Sittiparus varius",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "领岩鹨",
+      "latin": "Prunella collaris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "褐岩鹨",
+      "latin": "Prunella fulvescens",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棕眉山岩鹨",
+      "latin": "Prunella montanella",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棕扇尾莺",
+      "latin": "Cisticola juncidis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "纯色山鹪莺",
+      "latin": "Prinia inornata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "文须雀",
+      "latin": "Panurus biarmicus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红翅旋壁雀",
+      "latin": "Tichodroma muraria",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棕眉柳莺",
+      "latin": "Phylloscopus armandii",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "极北柳莺",
+      "latin": "Phylloscopus borealis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "冠纹柳莺",
+      "latin": "Phylloscopus claudiae",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "冕柳莺",
+      "latin": "Phylloscopus coronatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "淡眉柳莺",
+      "latin": "Phylloscopus humei",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰喉柳莺",
+      "latin": "Phylloscopus maculipennis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "双斑绿柳莺",
+      "latin": "Phylloscopus plumbeitarsus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "橙斑翅柳莺",
+      "latin": "Phylloscopus pulcher",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "巨嘴柳莺",
+      "latin": "Phylloscopus schwarzi",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "淡脚柳莺",
+      "latin": "Phylloscopus tenellipes",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "暗绿柳莺",
+      "latin": "Phylloscopus trochiloides",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "远东树莺",
+      "latin": "Horornis canturians",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "北椋鸟",
+      "latin": "Agropsar sturninus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "丝光椋鸟",
+      "latin": "Spodiopsar sericeus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "紫翅椋鸟",
+      "latin": "Sturnus vulgaris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "褐河乌",
+      "latin": "Cinclus pallasii",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白腰朱顶雀",
+      "latin": "Acanthis flammea",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "极北朱顶雀",
+      "latin": "Acanthis hornemanni",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红眉朱雀",
+      "latin": "Carpodacus pulcherrimus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "北朱雀",
+      "latin": "Carpodacus roseus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "长尾雀",
+      "latin": "Carpodacus sibiricus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "粉红腹岭雀",
+      "latin": "Leucosticte arctoa",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "林岭雀",
+      "latin": "Leucosticte nemoricola",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红交嘴雀",
+      "latin": "Loxia curvirostra",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰头灰雀",
+      "latin": "Pyrrhula erythaca",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "褐灰雀",
+      "latin": "Pyrrhula nipalensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红腹灰雀",
+      "latin": "Pyrrhula pyrrhula",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "紫寿带",
+      "latin": "Terpsiphone atrocaudata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "寿带",
+      "latin": "Terpsiphone incei",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小云雀",
+      "latin": "Alauda gulgula",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "亚洲短趾百灵",
+      "latin": "Alaudala cheleensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "细嘴短趾百灵",
+      "latin": "Alaudala rufescens",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大短趾百灵",
+      "latin": "Calandrella brachydactyla",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "凤头百灵",
+      "latin": "Galerida cristata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蒙古百灵",
+      "latin": "Melanocorypha mongolica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "稻田苇莺",
+      "latin": "Acrocephalus agricola",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑眉苇莺",
+      "latin": "Acrocephalus bistrigiceps",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "芦莺",
+      "latin": "Acrocephalus schoenobaenus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "细纹苇莺",
+      "latin": "Acrocephalus sorghophilus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "厚嘴苇莺",
+      "latin": "Arundinax aedon",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "靴篱莺",
+      "latin": "Iduna caligata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小蝗莺",
+      "latin": "Locustella certhiola",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "苍眉蝗莺",
+      "latin": "Locustella fasciolata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "矛斑蝗莺",
+      "latin": "Locustella lanceolata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鸲蝗莺",
+      "latin": "Locustella luscinioides",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "北蝗莺",
+      "latin": "Locustella ochotensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "史氏蝗莺",
+      "latin": "Locustella pleskei",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑背大尾莺",
+      "latin": "Locustella pryeri",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "铁爪鹀",
+      "latin": "Calcarius lapponicus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "雪鹀",
+      "latin": "Plectrophenax nivalis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红头长尾山雀",
+      "latin": "Aegithalos concinnus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "银脸长尾山雀",
+      "latin": "Aegithalos fuliginosus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "石雀",
+      "latin": "Petronia petronia",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "秃鼻乌鸦",
+      "latin": "Corvus frugilegus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "松鸦",
+      "latin": "Garrulus glandarius",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "星鸦",
+      "latin": "Nucifraga caryocatactes",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄嘴山鸦",
+      "latin": "Pyrrhocorax graculus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红嘴山鸦",
+      "latin": "Pyrrhocorax pyrrhocorax",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白眉地鸫",
+      "latin": "Geokichla sibirica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑喉鸫",
+      "latin": "Turdus atrogularis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰背鸫",
+      "latin": "Turdus hortulorum",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "宝兴歌鸫",
+      "latin": "Turdus mupinensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红尾斑鸫",
+      "latin": "Turdus naumanni",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白腹鸫",
+      "latin": "Turdus pallidus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "赤颈鸫",
+      "latin": "Turdus ruficollis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "槲鸫",
+      "latin": "Turdus viscivorus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "虎斑地鸫",
+      "latin": "Zoothera aurea",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄胸鹀",
+      "latin": "Emberiza aureola",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白头鹀",
+      "latin": "Emberiza leucocephalos",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "芦鹀",
+      "latin": "Emberiza schoeniclus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蓝鹀",
+      "latin": "Emberiza siemsseni",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "硫黄鹀",
+      "latin": "Emberiza sulphurata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红颈苇鹀",
+      "latin": "Emberiza yessoensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白顶溪鸲",
+      "latin": "Chaimarrornis leucocephalus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白腹蓝鹟",
+      "latin": "Cyanoptila cyanomelana",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "铜蓝鹟",
+      "latin": "Eumyias thalassinus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红喉姬鹟",
+      "latin": "Ficedula albicilla",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鸲姬鹟",
+      "latin": "Ficedula mugimaki",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄眉姬鹟",
+      "latin": "Ficedula narcissina",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白眉姬鹟",
+      "latin": "Ficedula zanthopygia",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蓝歌鸲",
+      "latin": "Larvivora cyane",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白喉矶鸫",
+      "latin": "Monticola gularis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "栗腹矶鸫",
+      "latin": "Monticola rufiventris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蓝矶鸫",
+      "latin": "Monticola solitarius",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "北灰鹟",
+      "latin": "Muscicapa dauurica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰纹鹟",
+      "latin": "Muscicapa griseisticta",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "乌鹟",
+      "latin": "Muscicapa sibirica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "紫啸鸫",
+      "latin": "Myophonus caeruleus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "沙䳭",
+      "latin": "Oenanthe isabellina",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "穗䳭",
+      "latin": "Oenanthe oenanthe",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白顶䳭",
+      "latin": "Oenanthe pleschanka",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红腹红尾鸲",
+      "latin": "Phoenicurus erythrogastrus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蓝额红尾鸲",
+      "latin": "Phoenicurus frontalis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红尾水鸲",
+      "latin": "Phoenicurus fuliginosus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑喉红尾鸲",
+      "latin": "Phoenicurus hodgsoni",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "赭红尾鸲",
+      "latin": "Phoenicurus ochruros",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白喉红尾鸲",
+      "latin": "Phoenicurus schisticeps",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰林䳭",
+      "latin": "Saxicola ferreus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑喉石䳭",
+      "latin": "Saxicola maurus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "东亚石䳭",
+      "latin": "Saxicola stejnegeri",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红喉鹨",
+      "latin": "Anthus cervinus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "北鹨",
+      "latin": "Anthus gustavi",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "田鹨",
+      "latin": "Anthus richardi",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "粉红胸鹨",
+      "latin": "Anthus roseatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄腹鹨",
+      "latin": "Anthus rubescens",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "山鹡鸰",
+      "latin": "Dendronanthus indicus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黄头鹡鸰",
+      "latin": "Motacilla citreola",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白额雁",
+      "latin": "Anser albifrons",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小白额雁",
+      "latin": "Anser erythropus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "青头潜鸭",
+      "latin": "Aythya baeri",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑背潜鸭",
+      "latin": "Aythya marila",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红胸秋沙鸭",
+      "latin": "Mergus serrator",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "中华秋沙鸭",
+      "latin": "Mergus squamatus",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "赤嘴潜鸭",
+      "latin": "Netta rufina",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棉凫",
+      "latin": "Nettapus coromandelianus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鹌鹑",
+      "latin": "Coturnix japonica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑翅山鹑",
+      "latin": "Perdix dauurica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "勺鸡",
+      "latin": "Pucrasia macrolopha",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大鸨",
+      "latin": "Otis tarda",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鬼鸮",
+      "latin": "Aegolius funereus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "雪鸮",
+      "latin": "Bubo scandiacus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "花头鸺鹠",
+      "latin": "Glaucidium passerinum",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "彩鹬",
+      "latin": "Rostratula benghalensis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "水雉",
+      "latin": "Hydrophasianus chirurgus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通燕鸻",
+      "latin": "Glareola maldivarum",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蛎鹬",
+      "latin": "Haematopus ostralegus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "短尾贼鸥",
+      "latin": "Stercorarius parasiticus",
+      "level": "未列入",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑浮鸥",
+      "latin": "Chlidonias niger",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棕头鸥",
+      "latin": "Chroicocephalus brunnicephalus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红嘴巨燕鸥",
+      "latin": "Hydroprogne caspia",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "遗鸥",
+      "latin": "Ichthyaetus relictus",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "普通海鸥",
+      "latin": "Larus canus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑尾鸥",
+      "latin": "Larus crassirostris",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰背鸥",
+      "latin": "Larus schistisagus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "织女银鸥",
+      "latin": "Larus vegae",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑嘴鸥",
+      "latin": "Saundersilarus saundersi",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "剑鸻",
+      "latin": "Charadrius hiaticula",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "铁嘴沙鸻",
+      "latin": "Charadrius leschenaultii",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蒙古沙鸻",
+      "latin": "Charadrius mongolus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "长嘴剑鸻",
+      "latin": "Charadrius placidus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "东方鸻",
+      "latin": "Charadrius veredus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "翻石鹬",
+      "latin": "Arenaria interpres",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "尖尾滨鹬",
+      "latin": "Calidris acuminata",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "三趾滨鹬",
+      "latin": "Calidris alba",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑腹滨鹬",
+      "latin": "Calidris alpina",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红腹滨鹬",
+      "latin": "Calidris canutus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "阔嘴鹬",
+      "latin": "Calidris falcinellus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "弯嘴滨鹬",
+      "latin": "Calidris ferruginea",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小滨鹬",
+      "latin": "Calidris minuta",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "流苏鹬",
+      "latin": "Calidris pugnax",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大滨鹬",
+      "latin": "Calidris tenuirostris",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "孤沙锥",
+      "latin": "Gallinago solitaria",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "针尾沙锥",
+      "latin": "Gallinago stenura",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑尾塍鹬",
+      "latin": "Limosa lapponica",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白腰杓鹬",
+      "latin": "Numenius arquata",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "大杓鹬",
+      "latin": "Numenius madagascariensis",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小杓鹬",
+      "latin": "Numenius minutus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红颈瓣蹼鹬",
+      "latin": "Phalaropus lobatus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "灰尾漂鹬",
+      "latin": "Tringa brevipes",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "翘嘴鹬",
+      "latin": "Xenus cinereus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "鹮嘴鹬",
+      "latin": "Ibidorhyncha struthersii",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "点斑林鸽",
+      "latin": "Columba hodgsonii",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑尾林鸽",
+      "latin": "Columba palumbus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棕腹杜鹃",
+      "latin": "Cuculus nisicolor",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "卷羽鹈鹕",
+      "latin": "Pelecanus crispus",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白鹈鹕",
+      "latin": "Pelecanus onocrotalus",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑嘴鹈鹕",
+      "latin": "Pelecanus philippensis",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "栗苇鳽",
+      "latin": "Ixobrychus cinnamomeus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "紫背苇鳽",
+      "latin": "Ixobrychus eurhythmus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑苇鳽",
+      "latin": "Ixobrychus flavicollis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白琵鹭",
+      "latin": "Platalea leucorodia",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑脸琵鹭",
+      "latin": "Platalea minor",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白胸苦恶鸟",
+      "latin": "Amaurornis phoenicurus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "花田鸡",
+      "latin": "Coturnicops exquisitus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "红胸田鸡",
+      "latin": "Zapornia fusca",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "斑胸田鸡",
+      "latin": "Zapornia paykullii",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小田鸡",
+      "latin": "Zapornia pusilla",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "丹顶鹤",
+      "latin": "Grus japonensis",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白鹤",
+      "latin": "Grus leucogeranus",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白头鹤",
+      "latin": "Grus monacha",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白枕鹤",
+      "latin": "Grus vipio",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蓑羽鹤",
+      "latin": "Grus virgo",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "秃鹫",
+      "latin": "Aegypius monachus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白肩雕",
+      "latin": "Aquila heliaca",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "草原雕",
+      "latin": "Aquila nipalensis",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "短趾雕",
+      "latin": "Circaetus gallicus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白腹鹞",
+      "latin": "Circus spilonotus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "乌雕",
+      "latin": "Clanga clanga",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑翅鸢",
+      "latin": "Elanus caeruleus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白尾海雕",
+      "latin": "Haliaeetus albicilla",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "玉带海雕",
+      "latin": "Haliaeetus leucoryphus",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "蛇雕",
+      "latin": "Spilornis cheela",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "白额鹱",
+      "latin": "Calonectris leucomelas",
+      "level": "未列入",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "东方白鹳",
+      "latin": "Ciconia boyciana",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "黑鹳",
+      "latin": "Ciconia nigra",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "赤颈䴙䴘",
+      "latin": "Podiceps grisegena",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "彩鹮",
+      "latin": "Plegadis falcinellus",
+      "level": "国家一级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "凤头鹰",
+      "latin": "Accipiter trivirgatus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "渔鸥",
+      "latin": "Ichthyaetus ichthyaetus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "小鸥",
+      "latin": "Hydrocoloeus minutus",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "棕尾鵟",
+      "latin": "Buteo rufinus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "靴隼雕",
+      "latin": "Hieraaetus pennatus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "长尾鸭",
+      "latin": "Clangula hyemalis",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "半蹼鹬",
+      "latin": "Limnodromus semipalmatus",
+      "level": "国家二级",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "董鸡",
+      "latin": "Gallicrex cinerea",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "赤翡翠",
+      "latin": "Halcyon coromanda",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    },
+    {
+      "name": "绿背姬鹟",
+      "latin": "Ficedula elisae",
+      "level": "三有",
+      "category": "鸟类",
+      "remark": ""
+    }
+  ]
+}
