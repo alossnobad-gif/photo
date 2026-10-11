@@ -1,8 +1,8 @@
 import {normalizeRarity} from './species-classification.js';
-export const collectionSortOptions=[['newest','最新发现'],['oldest','最早发现'],['rare','稀有优先'],['common','常见优先'],['protection','保护等级优先'],['name','物种名称']];
+export const collectionSortOptions=[['newest','最新拍摄'],['oldest','最早拍摄'],['rare','稀有优先'],['common','常见优先'],['protection','保护等级优先'],['name','物种名称']];
 export const validCollectionSort=value=>collectionSortOptions.some(([key])=>key===value)?value:'newest';
 const collator=new Intl.Collator('zh-CN',{numeric:true,sensitivity:'base'});
-const discovered=item=>{const value=Date.parse(item.discovered);return Number.isFinite(value)?value:null;};
+const discovered=item=>{const value=Date.parse(item.takenAt);return Number.isFinite(value)?value:null;};
 function dates(a,b,oldest=false){const x=discovered(a),y=discovered(b);if(x===null)return y===null?0:1;if(y===null)return -1;return oldest?x-y:y-x;}
 const names=(a,b)=>collator.compare(a.name||'',b.name||'')||collator.compare(a.latin||'',b.latin||'')||String(a.id||'').localeCompare(String(b.id||''));
 const protectionRank=item=>({'国家一级':0,'国家二级':1,'三有动物':2,'地方重点保护':2,'其他保护':2,'未列入保护名录':3})[item.protection]??4;
