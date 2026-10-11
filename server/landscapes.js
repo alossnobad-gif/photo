@@ -30,7 +30,7 @@ export function mountLandscapes(app,data){
    const temp=filename+'.tmp';await fs.writeFile(temp,JSON.stringify(result,null,2),{mode:0o600});await fs.rename(temp,filename);res.json({item,items:result});
   });queue=job.catch(()=>{});job.catch(next);
  }
- app.post('/api/landscapes',save);app.put('/api/landscapes/:id',save);
+ app.post('/api/landscapes',save);app.put('/api/landscapes/:id',save);return save;
 }
-export const landscapePrompt='你是风光摄影整理助手。只根据图片可见内容推荐标题和题材，不猜测城市、地点或拍摄日期。只返回JSON：{"title":"20字内中文摄影标题","tags":["题材"]}。题材只能从山川、河流、湖泊、海岸、森林、草原、日出日落、云雾星空、城市风光、其他中选择，可多选。';
-export function normalizeLandscapeRecognition(value){if(!value||typeof value.title!=='string'||!value.title.trim()||!Array.isArray(value.tags))throw Error('Invalid recognition');return {title:value.title.trim().slice(0,100),tags:[...new Set(value.tags.filter(tag=>landscapeTags.includes(tag)))]};}
+export const landscapePrompt='你是风光摄影整理助手。只根据图片可见内容推荐标题和题材，不猜测城市、地点或拍摄日期。只返回JSON：{"title":"20字内中文摄影标题","tags":["题材"],"confidence":0.0}。confidence 是0至1的识别置信度。题材只能从山川、河流、湖泊、海岸、森林、草原、日出日落、云雾星空、城市风光、其他中选择，可多选。';
+export function normalizeLandscapeRecognition(value){if(!value||typeof value.title!=='string'||!value.title.trim()||!Array.isArray(value.tags))throw Error('Invalid recognition');return {...(typeof value.confidence==='number'?{confidence:value.confidence}:{}),title:value.title.trim().slice(0,100),tags:[...new Set(value.tags.filter(tag=>landscapeTags.includes(tag)))]};}
