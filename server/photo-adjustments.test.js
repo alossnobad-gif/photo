@@ -1,0 +1,6 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {adjustPixels,neutralAdjustments,adjustmentControls} from '../src/photo-adjustments.js';
+function fixture(){const width=17,height=15,data=new Uint8ClampedArray(width*height*4);for(let i=0;i<width*height;i++){data.set([40+(i*17)%170,25+(i*23)%180,35+(i*13)%160,128],i*4);}return {data,width,height};}
+test('neutral photo adjustments preserve bytes; every control changes pixels without altering alpha',()=>{const original=fixture();const unchanged=fixture();adjustPixels(unchanged,neutralAdjustments);assert.deepEqual(unchanged.data,original.data);for(const [key] of adjustmentControls){const image=fixture();adjustPixels(image,{...neutralAdjustments,[key]:key==='exposure'?1:50});assert.notDeepEqual(image.data,original.data,key);for(let i=3;i<image.data.length;i+=4)assert.equal(image.data[i],128);}});
+test('exposure brightens, desaturation yields grayscale and clarity handles tiny images',()=>{const image={data:new Uint8ClampedArray([60,80,100,255]),width:1,height:1};adjustPixels(image,{...neutralAdjustments,exposure:1});assert.ok(image.data[0]>60);adjustPixels(image,{...neutralAdjustments,saturation:-100});assert.equal(image.data[0],image.data[1]);assert.equal(image.data[1],image.data[2]);assert.doesNotThrow(()=>adjustPixels(image,{...neutralAdjustments,clarity:100},5));});
