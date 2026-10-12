@@ -14,3 +14,12 @@ test('default queue processes one photo at a time and starts the next after comp
  const queue=await createRecognitionQueue(dir,{identify:async({photo})=>{started.push(photo);return new Promise(resolve=>releases.push(()=>resolve({...species,confidence:.5})));},save:async()=>({})});
  try{const first=await queue.enqueue({photo:'/photos/aaa.jpeg'});await until(()=>started.length===1);const second=await queue.enqueue({photo:'/photos/bbb.jpeg'});await new Promise(r=>setTimeout(r,30));assert.equal(second.status,'queued');assert.equal(started.length,1);releases.shift()();await until(()=>started.length===2);assert.equal(first.status,'review');releases.shift()();await until(()=>second.status==='review');}finally{queue.close();for(const release of releases)release();await fs.rm(dir,{recursive:true,force:true});}
 });
+
+test('landscape candidates need review independently of title confidence; EXIF date and metadata survive manual confirmation',async()=>{
+ const dir=await fs.mkdtemp(path.join(os.tmpdir(),'photo-queue-landscape-'));await fs.mkdir(path.join(dir,'photos'));const {default:sharp}=await import('sharp');await sharp({create:{width:30,height:20,channels:3,background:'#557788'}}).jpeg().withExif({IFD2:{DateTimeOriginal:'2020:03:04 12:00:00'}}).toFile(path.join(dir,'photos/aaa.jpeg'));let seen,saved;
+ const result={title:'故宫暮色',tags:['建筑地标'],confidence:.99,description:'夕阳里的屋顶',shareText:'收藏今日光影',placeCandidate:{city:'北京',location:'故宫',confidence:.99,evidence:['宫殿建筑']}};
+ assert.equal(automaticRecognition(result,'landscape'),false);
+ const queue=await createRecognitionQueue(dir,{identify:async fields=>{seen=fields;return result;},save:async(kind,body)=>{saved=body;return body;}});
+ try{const job=await queue.enqueue({photo:'/photos/aaa.jpeg',kind:'landscape',gps:{latitude:39.9,longitude:116.4}});await until(()=>job.status==='review');assert.equal(saved,undefined);assert.equal(job.fields.takenAt,'2020-03-04');assert.equal(seen.gps.latitude,39.9);await queue.confirm(job.id,{city:'北京',location:'故宫'});assert.equal(saved.takenAt,'2020-03-04');assert.equal(saved.city,'北京');assert.equal(saved.description,result.description);assert.equal(saved.shareText,result.shareText);
+ }finally{queue.close();await fs.rm(dir,{recursive:true,force:true});}
+});
