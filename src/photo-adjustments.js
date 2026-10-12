@@ -1,10 +1,10 @@
-export const adjustmentControls=[['exposure','曝光',-3,3,.1],['contrast','对比度',-100,100,1],['highlights','高光',-100,100,1],['shadows','阴影',-100,100,1],['whites','白色色阶',-100,100,1],['blacks','黑色色阶',-100,100,1],['vibrance','自然饱和度',-100,100,1],['saturation','饱和度',-100,100,1],['clarity','清晰度',-100,100,1]];
+export const adjustmentControls=[['exposure','曝光',-3,3,.1],['temperature','色温',-100,100,1],['tint','色调',-100,100,1],['contrast','对比度',-100,100,1],['highlights','高光',-100,100,1],['shadows','阴影',-100,100,1],['whites','白色色阶',-100,100,1],['blacks','黑色色阶',-100,100,1],['vibrance','自然饱和度',-100,100,1],['saturation','饱和度',-100,100,1],['clarity','清晰度',-100,100,1]];
 export const neutralAdjustments=Object.fromEntries(adjustmentControls.map(([key])=>[key,0]));
 const clamp=x=>Math.max(0,Math.min(1,x));
 export function adjustPixels(image,settings,radius=5){
  const {data,width,height}=image;if(!Object.values(settings).some(Boolean))return image;
  const exposure=2**(settings.exposure||0),contrast=1+(settings.contrast||0)/125;
- for(let i=0;i<data.length;i+=4){let r=data[i]/255,g=data[i+1]/255,b=data[i+2]/255;const l=.2126*r+.7152*g+.0722*b;
+ for(let i=0;i<data.length;i+=4){let r=data[i]/255,g=data[i+1]/255,b=data[i+2]/255;r=clamp(r+(settings.temperature||0)/100*.12);b=clamp(b-(settings.temperature||0)/100*.12);g=clamp(g+(settings.tint||0)/100*.1);const l=.2126*r+.7152*g+.0722*b;
  const delta=(settings.highlights||0)/100*.3*l*l+(settings.shadows||0)/100*.3*(1-l)**2+(settings.whites||0)/100*.22*l**5+(settings.blacks||0)/100*.22*(1-l)**5;
  r=clamp(((r*exposure+delta)-.5)*contrast+.5);g=clamp(((g*exposure+delta)-.5)*contrast+.5);b=clamp(((b*exposure+delta)-.5)*contrast+.5);
  const gray=.2126*r+.7152*g+.0722*b,chroma=Math.max(r,g,b)-Math.min(r,g,b),sat=Math.max(0,1+(settings.saturation||0)/100+(settings.vibrance||0)/100*(1-chroma)*.8);
