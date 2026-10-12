@@ -1,3 +1,4 @@
+import {normalizeProvince} from '../src/landscape-progress.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
@@ -6,6 +7,7 @@ export function normalizeLandscape(input,existing){
  const fail=message=>{throw Object.assign(new Error(message),{status:400});};
  if(!input||typeof input!=='object'||Array.isArray(input))fail('请填写风光资料');
  const text=(key,max)=>{if(input[key]!=null&&typeof input[key]!=='string')fail('资料格式不正确');const value=(input[key]||'').trim();if(value.length>max)fail('填写内容过长');return value;};
+ const provinceInput=text('province',50),province=normalizeProvince(provinceInput);if(provinceInput&&!province)fail('请选择有效省份');
  const description=text('description',1500),shareText=text('shareText',1500),title=text('title',100),city=text('city',100),location=text('location',150),note=text('note',3000),takenAt=text('takenAt',10);
  if(!title)fail('请填写照片标题');
  if(takenAt&&(!/^\d{4}-\d{2}-\d{2}$/.test(takenAt)||!Number.isFinite(Date.parse(takenAt))||new Date(takenAt).toISOString().slice(0,10)!==takenAt))fail('请选择有效的拍摄日期');
@@ -13,7 +15,7 @@ export function normalizeLandscape(input,existing){
  const photo=existing?.photo||input.photo;
  if(typeof photo!=='string'||!/^\/photos\/[a-f0-9-]+\.(jpeg|png|webp)$/.test(photo))fail('请先上传照片');
  const gps=input.gps;if(gps!=null&&(!Number.isFinite(gps.latitude)||!Number.isFinite(gps.longitude)||Math.abs(gps.latitude)>90||Math.abs(gps.longitude)>180))fail('照片定位格式不正确');
- return {gps:gps?{latitude:gps.latitude,longitude:gps.longitude}:null,id:existing?.id||randomUUID(),photo,title,city,location,note,takenAt,description,shareText,placeCandidate:normalizePlaceCandidate(input.placeCandidate),tags:[...new Set(input.tags)],cover:input.cover===true,created:existing?.created||new Date().toISOString(),updated:new Date().toISOString()};
+ return {gps:gps?{latitude:gps.latitude,longitude:gps.longitude}:null,id:existing?.id||randomUUID(),photo,title,province,city,location,note,takenAt,description,shareText,placeCandidate:normalizePlaceCandidate(input.placeCandidate),tags:[...new Set(input.tags)],cover:input.cover===true,created:existing?.created||new Date().toISOString(),updated:new Date().toISOString()};
 }
 export function mountLandscapes(app,data){
  const filename=path.join(data,'landscapes.json');let queue=Promise.resolve();
