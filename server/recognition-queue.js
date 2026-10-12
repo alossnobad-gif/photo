@@ -3,7 +3,7 @@ import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {validPhotoDate} from '../src/photo-date.js';
 export function automaticRecognition(result,kind){return typeof result?.confidence==='number'&&Number.isFinite(result.confidence)&&result.confidence>.85&&result.confidence<=1&&(kind==='landscape'?!!result.title:result.uncertain===false&&!!result.name&&!!result.latin&&['鸟类','动物','植物','昆虫','菌类'].includes(result.category));}
-export async function createRecognitionQueue(data,{identify,save,concurrency=2}){
+export async function createRecognitionQueue(data,{identify,save,concurrency=1}){
  const filename=path.join(data,'recognition-queue.json');let jobs=[];try{jobs=JSON.parse(await fs.readFile(filename,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
  const controllers=new Map();let writes=Promise.resolve(),active=0,closed=false;const persist=()=>{const content=JSON.stringify(jobs,null,2);const task=writes.then(async()=>{await fs.writeFile(filename+'.tmp',content,{mode:0o600});await fs.rename(filename+'.tmp',filename);});writes=task.catch(()=>{});return task;};
  for(const job of jobs){if(job.status==='processing')job.status='queued';if(job.status==='saving')job.status='review';if(job.status==='confirming')job.status='review';}await persist();
