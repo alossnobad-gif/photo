@@ -5,3 +5,5 @@
 .photo-library header>.primary{white-space:nowrap;flex-shrink:0;padding:12px 15px;gap:8px}.photo-library header>div{min-width:0}@media(min-width:1450px){.has-inspector .library-contact-sheet{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 .library-recognition{font-size:12px;line-height:1.6;color:#7b8177;margin:10px 14px 14px}.library-recognition.saved{color:#28593e}.library-recognition.active,.library-recognition.review{color:#94723a}.library-recognition.failed{color:#a44635}.library-status-detail{border-top:1px solid #ddd5c3;padding-top:10px}.library-status-detail p{margin:4px 0}.library-picker-grid .library-recognition{display:block;margin:5px 0}
+
+.library-card-actions{display:flex;gap:10px;margin-top:10px}.library-card-actions button{display:flex;align-items:center;gap:6px;border:1px solid #ded5c0;border-radius:7px;padding:8px 12px;background:transparent;color:#203e30;font:13px system-ui}.library-card-actions button:first-child{background:#203e30;color:#fff}.library-image:focus-visible{outline:3px solid #b6a47b}
