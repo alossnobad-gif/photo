@@ -4,3 +4,23 @@
 .landscape-editor .tag-picker label{white-space:nowrap;flex:0 0 auto}.landscape-editor .tag-picker input[type=checkbox]{display:inline-block;flex:0 0 14px;width:14px;height:14px;margin:0;padding:0}
 
 .landscape-candidate{border:1px solid #d4c49e;background:#eee7d7;border-radius:8px;padding:14px;margin:14px 0;font:13px/1.6 system-ui;color:#203e30}.landscape-candidate p{margin:6px 0}.landscape-candidate small{color:#7d7156}.landscape-candidate ul{padding-left:20px;margin:8px 0}.landscape-candidate li{overflow-wrap:anywhere}.landscape-candidate .crop-entry{margin:5px 0}.detail-body textarea[readonly]{width:100%;min-height:100px;padding:12px;border:1px solid #ded5c0;border-radius:7px;color:#203e30;background:transparent;font:14px/1.7 system-ui}
+/* Aligned album and photograph grids, rather than mixed-height newspaper columns. */
+.landscapes .place-albums{margin:8px 0 28px;padding:18px;border:1px solid var(--line);border-radius:10px;background:#fbf8f055}
+.landscapes .place-albums h3{font-size:18px;margin-bottom:14px}
+.landscapes .album-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:0}
+.landscapes .album-grid>button{height:115px;border:1px solid #ded5c3}
+.landscapes .album-grid>button>span{padding:13px}.landscapes .album-grid b{font-size:18px}
+.landscapes .landscape-gallery-heading{border-top:1px solid var(--line);padding-top:20px;margin-bottom:14px}
+.landscapes .landscape-filters{margin:0 0 20px;gap:7px}.landscapes .landscape-filters button{padding:7px 12px}
+.landscapes .landscape-masonry{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;columns:auto}
+.landscapes .landscape-photo{display:flex;flex-direction:column;margin:0;min-width:0;border:1px solid var(--line);border-radius:9px;padding:7px;background:#fbf8f055;overflow:hidden;transition:box-shadow .2s,transform .2s}
+.landscapes .landscape-photo:hover{box-shadow:0 5px 18px #203e3014;transform:translateY(-2px)}
+.landscapes .landscape-photo img{width:100%;aspect-ratio:4/3;height:auto;object-fit:contain;background:#e9e5d9;border-radius:5px}
+.landscapes .landscape-photo>div{padding:12px 7px 7px;min-width:0}
+.landscapes .landscape-photo h4{font-size:19px;line-height:1.45;min-height:2.9em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;margin-bottom:7px}
+.landscapes .landscape-photo p,.landscapes .landscape-photo span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:12px/1.8 system-ui}
+.landscape-card-date{display:block;font:11px/1.6 system-ui;color:#828776;border-top:1px solid var(--line);padding-top:9px;margin-top:10px}
+@media(min-width:1650px){.landscapes .landscape-masonry{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1100px){.landscapes .landscape-masonry{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+@media(max-width:600px){.landscapes .place-albums{padding:12px;margin-bottom:20px}.landscapes .album-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.landscapes .album-grid>button{height:100px}.landscapes .landscape-masonry{gap:12px}.landscapes .landscape-photo{padding:5px}.landscapes .landscape-photo>div{padding:9px 3px 5px}.landscapes .landscape-photo h4{font-size:15px}.landscapes .landscape-photo p,.landscapes .landscape-photo span{font-size:11px}.landscape-card-date{font-size:10px}.landscapes .landscape-gallery-heading h3{font-size:21px}}
+@media(max-width:360px){.landscapes .landscape-masonry{grid-template-columns:1fr}}
