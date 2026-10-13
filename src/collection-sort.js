@@ -1,5 +1,5 @@
 import {normalizeRarity} from './species-classification.js';
-export const collectionSortOptions=[['newest','最新拍摄'],['oldest','最早拍摄'],['rare','稀有优先'],['common','常见优先'],['protection','保护等级优先'],['name','物种名称']];
+export const collectionSortOptions=[['uploaded-newest','最近上传（入库）'],['uploaded-oldest','最早上传（入库）'],['newest','最新拍摄'],['oldest','最早拍摄'],['rare','稀有优先'],['common','常见优先'],['protection','保护等级优先'],['name','物种名称']];
 export const validCollectionSort=value=>collectionSortOptions.some(([key])=>key===value)?value:'newest';
 const collator=new Intl.Collator('zh-CN',{numeric:true,sensitivity:'base'});
 const discovered=item=>{const value=Date.parse(item.takenAt);return Number.isFinite(value)?value:null;};
@@ -9,6 +9,7 @@ const protectionRank=item=>({'国家一级':0,'国家二级':1,'三有动物':2,
 export function sortCollection(items,order='newest'){
  const mode=validCollectionSort(order);
  return [...items].sort((a,b)=>{
+  if(mode==='uploaded-newest'||mode==='uploaded-oldest'){const x=Date.parse(a.discovered),y=Date.parse(b.discovered);if(!Number.isFinite(x))return Number.isFinite(y)?1:names(a,b);if(!Number.isFinite(y))return -1;return (mode==='uploaded-oldest'?x-y:y-x)||names(a,b);}
   if(mode==='name')return names(a,b)||dates(a,b);
   if(mode==='oldest')return dates(a,b,true)||names(a,b);
   if(mode==='rare'||mode==='common'){
