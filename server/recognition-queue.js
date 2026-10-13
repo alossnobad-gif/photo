@@ -55,12 +55,12 @@ export function mountRecognitionQueue(app,queue){
  const dir=path.join(queue.data,'queue-thumbnails'),target=path.join(dir,path.basename(job.photo)+'.'+info.mtimeMs+'.jpg');
  try{await fs.access(target);}catch{
  if(!inFlight.has(target)){
- const work=thumbnailWork.catch(()=>{}).then(async()=>{await fs.mkdir(dir,{recursive:true});await sharp(source,{limitInputPixels:80_000_000}).rotate().resize({width:480,height:360,fit:'inside',withoutEnlargement:true}).jpeg({quality:65}).toFile(target);});
+ const work=thumbnailWork.catch(()=>{}).then(async()=>{await fs.mkdir(dir,{recursive:true});await sharp(source,{limitInputPixels:80_000_000}).rotate().resize({width:480,height:360,fit:'inside',withoutEnlargement:true}).jpeg({quality:65}).toFile(target+'.tmp');await fs.rename(target+'.tmp',target);});
  thumbnailWork=work;inFlight.set(target,work);work.finally(()=>inFlight.delete(target)).catch(()=>{});
  }
  await inFlight.get(target);
  }
- if(!res.destroyed)res.set('Cache-Control','private, max-age=60').sendFile(target);
+ if(!res.destroyed)res.set('Cache-Control','private, max-age=60').sendFile(target,{dotfiles:'allow'},error=>{if(error&&!res.headersSent&&!res.destroyed)res.sendStatus(error.statusCode||404);});
  }catch{if(!res.headersSent)res.sendStatus(404);}
  });
 app.get('/api/recognition-queue',(req,res)=>res.set('Cache-Control','no-store').json(queue.list()));const allowed=req=>req.get('sec-fetch-site')!=='cross-site'&&(!req.get('origin')||req.get('origin')===`${req.protocol}://${req.get('host')}`);for(const [route,action] of [['/api/recognition-queue/species',req=>queue.enqueue({...req.body,kind:'species'})],['/api/recognition-queue/landscape',req=>queue.enqueue({...req.body,kind:'landscape'})],['/api/recognition-queue/stop-all',()=>queue.stop()],['/api/recognition-queue/delete-batch',req=>queue.removeMany(req.body.ids)],['/api/recognition-queue/:id/stop',req=>queue.stop(req.params.id)],['/api/recognition-queue',req=>queue.enqueue(req.body)],['/api/recognition-queue/:id/retry',req=>queue.retry(req.params.id)],['/api/recognition-queue/:id/confirm',req=>queue.confirm(req.params.id,req.body)],['/api/recognition-queue/:id/delete',req=>queue.remove(req.params.id)]])app.post(route,async(req,res,next)=>{if(!allowed(req))return res.status(403).json({error:'请从本站操作'});try{const started=performance.now();const result=await action(req);console.info('Queue action',req.route.path,Math.round(performance.now()-started)+'ms');res.json(result);}catch(e){res.status(400).json({error:e.message});}});}
