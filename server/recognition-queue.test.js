@@ -15,12 +15,12 @@ test('default queue processes one photo at a time and starts the next after comp
  try{const first=await queue.enqueue({photo:'/photos/aaa.jpeg'});await until(()=>started.length===1);const second=await queue.enqueue({photo:'/photos/bbb.jpeg'});await new Promise(r=>setTimeout(r,30));assert.equal(second.status,'queued');assert.equal(started.length,1);releases.shift()();await until(()=>started.length===2);assert.equal(first.status,'review');releases.shift()();await until(()=>second.status==='review');}finally{queue.close();for(const release of releases)release();await fs.rm(dir,{recursive:true,force:true});}
 });
 
-test('landscape candidates need review independently of title confidence; EXIF date and metadata survive manual confirmation',async()=>{
+test('high confidence landscape candidates automatically save locations and preserve metadata',async()=>{
  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'photo-queue-landscape-'));await fs.mkdir(path.join(dir,'photos'));const {default:sharp}=await import('sharp');await sharp({create:{width:30,height:20,channels:3,background:'#557788'}}).jpeg().withExif({IFD2:{DateTimeOriginal:'2020:03:04 12:00:00'}}).toFile(path.join(dir,'photos/aaa.jpeg'));let seen,saved;
  const result={title:'故宫暮色',tags:['建筑地标'],confidence:.99,description:'夕阳里的屋顶',shareText:'收藏今日光影',placeCandidate:{city:'北京',location:'故宫',confidence:.99,evidence:['宫殿建筑']}};
- assert.equal(automaticRecognition(result,'landscape'),false);
+ assert.equal(automaticRecognition(result,'landscape'),true);assert.equal(automaticRecognition({...result,confidence:.85},'landscape'),false);
  const queue=await createRecognitionQueue(dir,{identify:async fields=>{seen=fields;return result;},save:async(kind,body)=>{saved=body;return body;}});
- try{const job=await queue.enqueue({photo:'/photos/aaa.jpeg',kind:'landscape',gps:{latitude:39.9,longitude:116.4}});await until(()=>job.status==='review');assert.equal(saved,undefined);assert.equal(job.fields.takenAt,'2020-03-04');assert.equal(seen.gps.latitude,39.9);await queue.confirm(job.id,{city:'北京',location:'故宫'});assert.equal(saved.takenAt,'2020-03-04');assert.equal(saved.city,'北京');assert.equal(saved.description,result.description);assert.equal(saved.shareText,result.shareText);
+ try{const job=await queue.enqueue({photo:'/photos/aaa.jpeg',kind:'landscape',gps:{latitude:39.9,longitude:116.4}});await until(()=>job.status==='completed');assert.equal(job.fields.takenAt,'2020-03-04');assert.equal(seen.gps.latitude,39.9);assert.equal(saved.location,'故宫');assert.equal(saved.takenAt,'2020-03-04');assert.equal(saved.city,'北京');assert.equal(saved.description,result.description);assert.equal(saved.shareText,result.shareText);
  }finally{queue.close();await fs.rm(dir,{recursive:true,force:true});}
 });
 test('stop all preserves queued photos and ignores late provider success; stopped tasks resume',async()=>{
@@ -33,4 +33,8 @@ test('bulk deletion removes tasks together but retains library and saved photos 
  const jobs=[{id:'a',photo:'/photos/aaa.jpeg',status:'stopped'},{id:'b',photo:'/photos/bbb.jpeg',status:'review'},{id:'c',photo:'/photos/ccc.jpeg',status:'completed'}];await fs.writeFile(path.join(dir,'recognition-queue.json'),JSON.stringify(jobs));await fs.writeFile(path.join(dir,'library.json'),JSON.stringify([{photo:'/photos/bbb.jpeg'}]));
  const queue=await createRecognitionQueue(dir,{concurrency:0,identify:async()=>species,save:async()=>({})});
  try{queue.list().push({id:'busy',photo:'/photos/bbb.jpeg',status:'saving'});const result=await queue.removeMany(['a','b','c','busy']);assert.deepEqual(result.removed,['a','b','c']);assert.deepEqual(result.skipped,['busy']);await assert.rejects(fs.access(path.join(dir,'photos/aaa.jpeg')));await fs.access(path.join(dir,'photos/bbb.jpeg'));await fs.access(path.join(dir,'photos/ccc.jpeg'));assert.equal(queue.list().length,1);assert.equal(JSON.parse(await fs.readFile(path.join(dir,'recognition-queue.json'),'utf8')).length,1);}finally{queue.close();await fs.rm(dir,{recursive:true,force:true});}
+});
+test('startup strips redundant album snapshots from old queue records',async()=>{
+ const dir=await fs.mkdtemp(path.join(os.tmpdir(),'queue-compact-'));const item={id:'photo',title:'风光',photo:'/photos/aaa.jpeg'};await fs.writeFile(path.join(dir,'recognition-queue.json'),JSON.stringify([{id:'job',status:'completed',saved:{item,items:Array(100).fill(item)}}]));
+ const queue=await createRecognitionQueue(dir,{identify:async()=>species,save:async()=>({})});try{assert.deepEqual(queue.list()[0].saved,item);assert.ok((await fs.stat(path.join(dir,'recognition-queue.json'))).size<1000);}finally{queue.close();await fs.rm(dir,{recursive:true,force:true});}
 });

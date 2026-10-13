@@ -90,7 +90,7 @@ app.post('/api/collection',saveCollectionHandler);
 function invoke(handler,body){return new Promise((resolve,reject)=>{let status=200;const req={body,signal:body.signal,params:{},headers:{},is:()=>true,get:()=>undefined};const res={status(value){status=value;return this;},json(value){if(status>=400)reject(new Error(value.error||'该物种已在图鉴中，请确认是否替换照片'));else resolve(value);}};Promise.resolve(handler(req,res,reject)).catch(reject);});}
 const recognitionQueue=await createRecognitionQueue(data,{identify:body=>invoke(identifyHandler,body),save:async(kind,body)=>{
  const file=kind==='landscape'?'landscapes.json':'collection.json';let items=[];try{items=JSON.parse(await fs.readFile(path.join(data,file),'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}const existing=items.find(item=>item.photo===body.photo);if(existing)return existing;
- return invoke(kind==='landscape'?saveLandscape:saveCollectionHandler,body);
+ const saved=await invoke(kind==='landscape'?saveLandscape:saveCollectionHandler,body);return kind==='landscape'?saved.item:saved;
 }});
 mountRecognitionQueue(app,recognitionQueue);
 await mountPhotoLibrary(app,data,{recognitionQueue});

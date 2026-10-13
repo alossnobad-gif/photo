@@ -1,3 +1,4 @@
+import {provinceForCity} from '../src/city-provinces.js';
 import {normalizeProvince} from '../src/landscape-progress.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -15,12 +16,12 @@ export function normalizeLandscape(input,existing){
  const photo=existing?.photo||input.photo;
  if(typeof photo!=='string'||!/^\/photos\/[a-f0-9-]+\.(jpeg|png|webp)$/.test(photo))fail('请先上传照片');
  const gps=input.gps;if(gps!=null&&(!Number.isFinite(gps.latitude)||!Number.isFinite(gps.longitude)||Math.abs(gps.latitude)>90||Math.abs(gps.longitude)>180))fail('照片定位格式不正确');
- return {gps:gps?{latitude:gps.latitude,longitude:gps.longitude}:null,id:existing?.id||randomUUID(),photo,title,province,city,location,note,takenAt,description,shareText,placeCandidate:normalizePlaceCandidate(input.placeCandidate),tags:[...new Set(input.tags)],cover:input.cover===true,created:existing?.created||new Date().toISOString(),updated:new Date().toISOString()};
+ return {gps:gps?{latitude:gps.latitude,longitude:gps.longitude}:null,id:existing?.id||randomUUID(),photo,title,province:province||provinceForCity(city),city,location,note,takenAt,description,shareText,placeCandidate:normalizePlaceCandidate(input.placeCandidate),tags:[...new Set(input.tags)],cover:input.cover===true,created:existing?.created||new Date().toISOString(),updated:new Date().toISOString()};
 }
 export function mountLandscapes(app,data){
  const filename=path.join(data,'landscapes.json');let queue=Promise.resolve();
  const read=async()=>{try{return JSON.parse(await fs.readFile(filename,'utf8'));}catch(e){if(e.code==='ENOENT')return [];throw e;}};
- app.get('/api/landscapes',async(req,res,next)=>{try{res.set('Cache-Control','no-store').json(await read());}catch(e){next(e);}});
+ app.get('/api/landscapes',async(req,res,next)=>{try{res.set('Cache-Control','no-store').json((await read()).map(item=>({...item,province:item.province||provinceForCity(item.city)})));}catch(e){next(e);}});
  function save(req,res,next){
   if(!req.is('application/json'))return res.status(415).json({error:'需要 JSON 请求'});
   if(req.get('sec-fetch-site')==='cross-site')return res.status(403).json({error:'只允许本站保存风光'});
@@ -45,5 +46,5 @@ confidence为标题和题材的0至1置信度；placeCandidate.confidence独立�
 不要返回takenAt或gps，不从文件名、季节、光线猜拍摄日期；日期由系统读取EXIF或用户填写。GPS仅作辅助，不宣称做过逆地理编码。`;
 
 const confidence=value=>typeof value==='number'&&Number.isFinite(value)&&value>=0&&value<=1?value:null;
-export function normalizePlaceCandidate(value){if(!value||typeof value!=='object'||Array.isArray(value))return null;const city=typeof value.city==='string'?value.city.trim().slice(0,100):'',location=typeof value.location==='string'?value.location.trim().slice(0,150):'';if(!city&&!location)return null;return {province:normalizeProvince(value.province),city,location,confidence:confidence(value.confidence),evidence:Array.isArray(value.evidence)?value.evidence.filter(x=>typeof x==='string').map(x=>x.trim().slice(0,200)).filter(Boolean).slice(0,5):[]};}
+export function normalizePlaceCandidate(value){if(!value||typeof value!=='object'||Array.isArray(value))return null;const city=typeof value.city==='string'?value.city.trim().slice(0,100):'',location=typeof value.location==='string'?value.location.trim().slice(0,150):'';if(!city&&!location)return null;return {province:normalizeProvince(value.province)||provinceForCity(city),city,location,confidence:confidence(value.confidence),evidence:Array.isArray(value.evidence)?value.evidence.filter(x=>typeof x==='string').map(x=>x.trim().slice(0,200)).filter(Boolean).slice(0,5):[]};}
 export function normalizeLandscapeRecognition(value){if(!value||typeof value.title!=='string'||!value.title.trim()||!Array.isArray(value.tags))throw Error('Invalid recognition');const score=confidence(value.confidence);return {...(score!==null?{confidence:score}:{}),title:value.title.trim().slice(0,100),tags:[...new Set(value.tags.filter(tag=>landscapeTags.includes(tag)))],description:typeof value.description==='string'?value.description.trim().slice(0,1500):'',shareText:typeof value.shareText==='string'?value.shareText.trim().slice(0,1500):'',placeCandidate:normalizePlaceCandidate(value.placeCandidate)};}
