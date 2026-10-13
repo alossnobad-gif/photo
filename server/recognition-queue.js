@@ -1,3 +1,4 @@
+import sharp from 'sharp';
 import {normalizeProvince} from '../src/landscape-progress.js';
 import {photoMetadata} from './photo-metadata.js';
 import fs from 'node:fs/promises';
@@ -42,6 +43,24 @@ export async function createRecognitionQueue(data,{identify,save,concurrency=1})
  async function remove(id){if(!jobs.some(j=>j.id===id))throw Error('任务已不存在');const result=await removeMany([id]);if(result.skipped.length)throw Error('正在入库，请稍后再删除队列记录');return {removed:id};}
  // A confirmation interrupted by restart can safely be reviewed again.
  for(const job of jobs)if(job.status==='confirming')job.status='review';pump();
- return {list:()=>jobs,enqueue,retry,confirm,remove,removeMany,stop,close:()=>{closed=true;}};
+ return {data,list:()=>jobs,enqueue,retry,confirm,remove,removeMany,stop,close:()=>{closed=true;}};
 }
-export function mountRecognitionQueue(app,queue){app.get('/api/recognition-queue',(req,res)=>res.set('Cache-Control','no-store').json(queue.list()));const allowed=req=>req.get('sec-fetch-site')!=='cross-site'&&(!req.get('origin')||req.get('origin')===`${req.protocol}://${req.get('host')}`);for(const [route,action] of [['/api/recognition-queue/stop-all',()=>queue.stop()],['/api/recognition-queue/delete-batch',req=>queue.removeMany(req.body.ids)],['/api/recognition-queue/:id/stop',req=>queue.stop(req.params.id)],['/api/recognition-queue',req=>queue.enqueue(req.body)],['/api/recognition-queue/:id/retry',req=>queue.retry(req.params.id)],['/api/recognition-queue/:id/confirm',req=>queue.confirm(req.params.id,req.body)],['/api/recognition-queue/:id/delete',req=>queue.remove(req.params.id)]])app.post(route,async(req,res,next)=>{if(!allowed(req))return res.status(403).json({error:'请从本站操作'});try{res.json(await action(req));}catch(e){res.status(400).json({error:e.message});}});}
+export function mountRecognitionQueue(app,queue){
+ let thumbnailWork=Promise.resolve();const inFlight=new Map();
+ app.get('/api/recognition-queue/:id/thumbnail',async(req,res)=>{
+ try{
+ const job=queue.list().find(j=>j.id===req.params.id);if(!job)return res.sendStatus(404);
+ if(!/^\/photos\/[a-f0-9-]+\.(jpeg|png|webp)$/.test(job.photo))return res.sendStatus(400);
+ const source=path.join(queue.data,job.photo),info=await fs.stat(source);
+ const dir=path.join(queue.data,'queue-thumbnails'),target=path.join(dir,path.basename(job.photo)+'.'+info.mtimeMs+'.jpg');
+ try{await fs.access(target);}catch{
+ if(!inFlight.has(target)){
+ const work=thumbnailWork.catch(()=>{}).then(async()=>{await fs.mkdir(dir,{recursive:true});await sharp(source,{limitInputPixels:80_000_000}).rotate().resize({width:480,height:360,fit:'inside',withoutEnlargement:true}).jpeg({quality:65}).toFile(target);});
+ thumbnailWork=work;inFlight.set(target,work);work.finally(()=>inFlight.delete(target)).catch(()=>{});
+ }
+ await inFlight.get(target);
+ }
+ if(!res.destroyed)res.set('Cache-Control','private, max-age=60').sendFile(target);
+ }catch{if(!res.headersSent)res.sendStatus(404);}
+ });
+app.get('/api/recognition-queue',(req,res)=>res.set('Cache-Control','no-store').json(queue.list()));const allowed=req=>req.get('sec-fetch-site')!=='cross-site'&&(!req.get('origin')||req.get('origin')===`${req.protocol}://${req.get('host')}`);for(const [route,action] of [['/api/recognition-queue/stop-all',()=>queue.stop()],['/api/recognition-queue/delete-batch',req=>queue.removeMany(req.body.ids)],['/api/recognition-queue/:id/stop',req=>queue.stop(req.params.id)],['/api/recognition-queue',req=>queue.enqueue(req.body)],['/api/recognition-queue/:id/retry',req=>queue.retry(req.params.id)],['/api/recognition-queue/:id/confirm',req=>queue.confirm(req.params.id,req.body)],['/api/recognition-queue/:id/delete',req=>queue.remove(req.params.id)]])app.post(route,async(req,res,next)=>{if(!allowed(req))return res.status(403).json({error:'请从本站操作'});try{const started=performance.now();const result=await action(req);console.info('Queue action',req.route.path,Math.round(performance.now()-started)+'ms');res.json(result);}catch(e){res.status(400).json({error:e.message});}});}

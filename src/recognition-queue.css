@@ -5,3 +5,5 @@
 .queue-kind{display:flex;align-items:center;gap:10px;margin:16px 0;color:#526854}.queue-kind select{padding:8px 12px;border:1px solid #dcd3bd;border-radius:8px;background:#f7f3e9;color:#203e30}
 
 .queue-bulk{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:16px 0}.queue-bulk button{padding:8px 14px;border:1px solid #dcd3bd;border-radius:8px}.queue-card>label{display:block;padding:10px}
+
+.queue-photo-placeholder{height:180px;background:#e8e4d8}
