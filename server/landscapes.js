@@ -34,6 +34,13 @@ export function mountLandscapes(app,data){
   });queue=job.catch(()=>{});job.catch(next);
  }
  save.removeMisclassified=async(id,photo)=>{const task=queue.then(async()=>{const items=await read();const record=items.find(x=>x.id===id);if(!record)return;if(record.photo!==photo)throw Error('修复照片与风光记录不匹配');await fs.writeFile(filename+'.repair-backup-'+randomUUID(),JSON.stringify(items),{mode:0o600});await fs.writeFile(filename+'.tmp',JSON.stringify(items.filter(x=>x.id!==id),null,2),{mode:0o600});await fs.rename(filename+'.tmp',filename);});queue=task.catch(()=>{});return task;};
+ app.post('/api/landscapes/delete-batch',(req,res,next)=>{
+  if(!req.is('application/json'))return res.status(415).json({error:'需要 JSON 请求'});
+  if(req.get('sec-fetch-site')==='cross-site')return res.status(403).json({error:'只允许本站删除风光'});
+  if(req.get('origin')){try{if(new URL(req.get('origin')).host!==req.get('host'))return res.status(403).json({error:'只允许本站删除风光'});}catch{return res.status(403).json({error:'无效来源'});}}
+  const ids=req.body?.ids;if(!Array.isArray(ids)||!ids.length||ids.length>10000||ids.some(id=>typeof id!=='string'||!id))return res.status(400).json({error:'请选择要删除的风光记录'});
+  const task=queue.then(async()=>{const items=await read(),chosen=new Set(ids),removed=items.filter(item=>chosen.has(item.id)).map(item=>item.id);if(removed.length){await fs.writeFile(filename+'.tmp',JSON.stringify(items.filter(item=>!chosen.has(item.id)),null,2),{mode:0o600});await fs.rename(filename+'.tmp',filename);}res.json({removed});});queue=task.catch(()=>{});task.catch(next);
+ });
  app.post('/api/landscapes',save);app.put('/api/landscapes/:id',save);return save;
 }
 export const landscapePrompt=`你是熟悉中国及世界著名景点的旅行摄影地标识别助手。首要任务是辨认照片里的具体景点及所属城市，其次才是整理标题和文案。可以使用你已有的地理、建筑和景点知识；没有联网检索能力，不声称已查询地图或核验。
