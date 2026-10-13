@@ -3,3 +3,5 @@
 .queue-actions .queue-delete{color:#a4513a;border-color:#d6b9a8}.queue-delete-confirm{padding:12px;margin-top:12px;background:#efe5d9;border-radius:8px}.queue-delete-confirm button{padding:8px 12px;border:1px solid #cdbbaa;border-radius:7px;background:transparent;color:#a4513a;margin-right:8px}
 
 .queue-kind{display:flex;align-items:center;gap:10px;margin:16px 0;color:#526854}.queue-kind select{padding:8px 12px;border:1px solid #dcd3bd;border-radius:8px;background:#f7f3e9;color:#203e30}
+
+.queue-bulk{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:16px 0}.queue-bulk button{padding:8px 14px;border:1px solid #dcd3bd;border-radius:8px}.queue-card>label{display:block;padding:10px}

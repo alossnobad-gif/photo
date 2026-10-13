@@ -6,7 +6,7 @@ import './photo-library.css';
 import {libraryRequest} from './library-request';
 import {matchesRecognitionStatus} from './library-recognition';
 export {libraryRequest} from './library-request';
-const statusLabels={unsubmitted:'未提交',active:'识别中',review:'待确认',failed:'识别失败',saved:'已入库',recognized:'已识别（未在图鉴中）'};
+const statusLabels={stopped:'已停止',unsubmitted:'未提交',active:'识别中',review:'待确认',failed:'识别失败',saved:'已入库',recognized:'已识别（未在图鉴中）'};
 const recognitionStatus=(item,kind)=>item.recognition?.[kind]?.status||'unsubmitted';
 function StatusFilter({value,onChange}){return <label className="library-kind">识别状态<select aria-label="筛选识别状态" value={value} onChange={e=>onChange(e.target.value)}><option value="all">全部状态</option>{Object.entries(statusLabels).map(([key,label])=><option key={key} value={key}>{label}</option>)}</select></label>;}
 export function LibraryPicker({kind,onSelect,onCancel,multiple=false}){
