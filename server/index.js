@@ -16,7 +16,7 @@ import express from 'express';import multer from 'multer';import fs from 'node:f
 const root=process.cwd(), data=path.join(root,'.data');await fs.mkdir(path.join(data,'photos'),{recursive:true});
 try{const result=await backfillPhotoDates(data);if(result.checked)console.info('Photo dates restored',result);}catch(e){console.error('Photo date restoration failed',e.code||e.name);}
 const settings=await createSettings(data);
-const app=express();app.use(express.json({limit:'100kb'}));app.use('/photos',express.static(path.join(data,'photos')));
+const app=express();app.set('trust proxy','loopback');app.use(express.json({limit:'100kb'}));app.use('/photos',express.static(path.join(data,'photos')));
 const upload=multer({storage:multer.memoryStorage(),limits:{fileSize:50*1024*1024},fileFilter:(req,f,cb)=>cb(null,['image/jpeg','image/png','image/webp'].includes(f.mimetype))});
 async function read(){try{return JSON.parse(await fs.readFile(path.join(data,'collection.json'),'utf8')).map(item=>applyCatalogue(normalizeClassification(item)));}catch(e){if(e.code==='ENOENT')return [];throw e;}}
 const saveLandscape=mountLandscapes(app,data);
@@ -96,4 +96,4 @@ mountRecognitionQueue(app,recognitionQueue);
 await mountPhotoLibrary(app,data,{recognitionQueue});
 if(process.env.NODE_ENV==='production'){app.use(express.static(path.join(root,'dist')));app.get('/{*path}',(req,res)=>res.sendFile(path.join(root,'dist','index.html')));}else{const {createServer}=await import('vite');const vite=await createServer({server:{middlewareMode:true},appType:'spa'});app.use(vite.middlewares);}
 app.use((err,req,res,next)=>{console.error(err.name,err.message);res.status(err.code==='LIMIT_FILE_SIZE'?413:400).json({error:err.code==='LIMIT_FILE_SIZE'?'照片最大支持 50 MB':'操作失败，请稍后重试。'});});
-app.listen(Number(process.env.PORT)||3000,'0.0.0.0',()=>console.log('Nature compendium listening on port '+(process.env.PORT||3000)));
+app.listen(Number(process.env.PORT)||3000,process.env.NODE_ENV==='production'?'127.0.0.1':(process.env.HOST||'0.0.0.0'),()=>console.log('Nature compendium listening on port '+(process.env.PORT||3000)));
