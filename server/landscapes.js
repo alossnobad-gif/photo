@@ -33,6 +33,7 @@ export function mountLandscapes(app,data){
    const temp=filename+'.tmp';await fs.writeFile(temp,JSON.stringify(result,null,2),{mode:0o600});await fs.rename(temp,filename);res.json({item,items:result});
   });queue=job.catch(()=>{});job.catch(next);
  }
+ save.removeMisclassified=async(id,photo)=>{const task=queue.then(async()=>{const items=await read();const record=items.find(x=>x.id===id);if(!record)return;if(record.photo!==photo)throw Error('修复照片与风光记录不匹配');await fs.writeFile(filename+'.repair-backup-'+randomUUID(),JSON.stringify(items),{mode:0o600});await fs.writeFile(filename+'.tmp',JSON.stringify(items.filter(x=>x.id!==id),null,2),{mode:0o600});await fs.rename(filename+'.tmp',filename);});queue=task.catch(()=>{});return task;};
  app.post('/api/landscapes',save);app.put('/api/landscapes/:id',save);return save;
 }
 export const landscapePrompt=`你是熟悉中国及世界著名景点的旅行摄影地标识别助手。首要任务是辨认照片里的具体景点及所属城市，其次才是整理标题和文案。可以使用你已有的地理、建筑和景点知识；没有联网检索能力，不声称已查询地图或核验。

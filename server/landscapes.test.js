@@ -37,3 +37,7 @@ test('landscape recognition separates location candidates, never trusts model da
  assert.equal(normalizeLandscapeRecognition({title:'山景',tags:['山川'],confidence:95,placeCandidate:{city:'',location:'',confidence:1}}).confidence,undefined);
  const saved=normalizeLandscape({...input,...result});assert.equal(saved.description,'红墙与屋顶');assert.equal(saved.shareText,'今日光影');assert.equal(saved.placeCandidate.confidence,.7);assert.equal(saved.takenAt,input.takenAt);
 });
+test('classification repair removes only the matching landscape record and preserves photos with a backup',async()=>{
+ const dir=await fs.mkdtemp(path.join(os.tmpdir(),'landscape-repair-'));await fs.mkdir(path.join(dir,'photos'));await fs.writeFile(path.join(dir,'photos/abc.jpeg'),'fixture');const rows=[{id:'a',photo:'/photos/abc.jpeg'},{id:'b',photo:'/photos/def.jpeg'}];await fs.writeFile(path.join(dir,'landscapes.json'),JSON.stringify(rows));
+ const save=mountLandscapes(express(),dir);try{await assert.rejects(save.removeMisclassified('a','/photos/wrong.jpeg'));assert.equal(JSON.parse(await fs.readFile(path.join(dir,'landscapes.json'),'utf8')).length,2);await save.removeMisclassified('a','/photos/abc.jpeg');assert.deepEqual(JSON.parse(await fs.readFile(path.join(dir,'landscapes.json'),'utf8')),[rows[1]]);await fs.access(path.join(dir,'photos/abc.jpeg'));assert.ok((await fs.readdir(dir)).some(x=>x.includes('repair-backup')));await save.removeMisclassified('a','/photos/abc.jpeg');}finally{await fs.rm(dir,{recursive:true,force:true});}
+});

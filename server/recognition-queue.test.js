@@ -38,3 +38,9 @@ test('startup strips redundant album snapshots from old queue records',async()=>
  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'queue-compact-'));const item={id:'photo',title:'风光',photo:'/photos/aaa.jpeg'};await fs.writeFile(path.join(dir,'recognition-queue.json'),JSON.stringify([{id:'job',status:'completed',saved:{item,items:Array(100).fill(item)}}]));
  const queue=await createRecognitionQueue(dir,{identify:async()=>species,save:async()=>({})});try{assert.deepEqual(queue.list()[0].saved,item);assert.ok((await fs.stat(path.join(dir,'recognition-queue.json'))).size<1000);}finally{queue.close();await fs.rm(dir,{recursive:true,force:true});}
 });
+
+test('landscape repair validates source and preserves repair link through review and confirmation',async()=>{
+ const dir=await fs.mkdtemp(path.join(os.tmpdir(),'queue-repair-'));await fs.mkdir(path.join(dir,'photos'));await fs.writeFile(path.join(dir,'photos/aaa.jpeg'),'fixture');await fs.writeFile(path.join(dir,'landscapes.json'),JSON.stringify([{id:'wrong',photo:'/photos/aaa.jpeg'}]));let saved;
+ const queue=await createRecognitionQueue(dir,{identify:async()=>({...species,confidence:.5}),save:async(kind,body)=>{assert.equal(kind,'species');saved=body;return body;}});
+ try{await assert.rejects(queue.enqueue({photo:'/photos/aaa.jpeg',kind:'species',repairLandscapeId:'missing'}));const job=await queue.enqueue({photo:'/photos/aaa.jpeg',kind:'species',repairLandscapeId:'wrong'});await until(()=>job.status==='review');assert.equal(saved,undefined);await queue.confirm(job.id,{name:'已核实'});assert.equal(saved.repairLandscapeId,'wrong');assert.equal(saved.photo,'/photos/aaa.jpeg');assert.equal(job.status,'completed');const again=await queue.enqueue({photo:job.photo,kind:'species',repairLandscapeId:'wrong'});assert.equal(again.id,job.id);await until(()=>again.status==='review');await fs.access(path.join(dir,'photos/aaa.jpeg'));}finally{queue.close();await fs.rm(dir,{recursive:true,force:true});}
+});
