@@ -34,13 +34,16 @@ export function mountLandscapes(app,data){
  }
  app.post('/api/landscapes',save);app.put('/api/landscapes/:id',save);return save;
 }
-export const landscapePrompt=`你是风光摄影整理助手。仅依据图片和提供的真实照片元数据，不联网、不编造。
+export const landscapePrompt=`你是熟悉中国及世界著名景点的旅行摄影地标识别助手。首要任务是辨认照片里的具体景点及所属城市，其次才是整理标题和文案。可以使用你已有的地理、建筑和景点知识；没有联网检索能力，不声称已查询地图或核验。
+先检查画面里的招牌、匾额、题字、建筑轮廓与层数、桥梁结构、山形、水系、建筑群组合；结合提供的文件名线索与用户地点，判断最可能的地标。著名地标即使没有GPS或文字，只要独特视觉特征足够，也应给出候选名称，并用已有知识补充所属城市和省份。不要把没有GPS、不能联网或不是百分之百确定当成必须留空的理由。
+只有一般性的山水、沙丘、日落、普通建筑或几个地点难以区分时才留空，不能随便挑一个热门景点。文件名只是线索，需与画面相符；不能只抄文件名，不能虚构画面中看不到的文字。只看出城市时可以只给城市，不要补造具体景点。
 返回一个JSON对象，不要markdown：
-{"title":"20字内中文摄影标题","tags":["题材"],"description":"80至150字画面描述","shareText":"简短自然的分享文案，不含未经确认的地名","confidence":0.0,"placeCandidate":{"city":"城市或地区，不能确定则空字符串","location":"可辨认的具体地标名称，不能确定则空字符串","confidence":0.0,"evidence":["可见的地标特征或照片GPS依据"]}}
-confidence为标题和题材的0至1置信度；placeCandidate.confidence单独评估城市和地标，都是模型自评而非事实核验。
+{"title":"20字内中文摄影标题","tags":["题材"],"description":"80至120字画面描述","shareText":"简短自然的分享文案，不含未经确认的地名","confidence":0.0,"placeCandidate":{"province":"中国省级行政区简称，国外或无法确定留空","city":"城市或地区，无法判断留空","location":"最可能的具体地标名称，无法判断留空","confidence":0.0,"evidence":["画面实际可见且支持判断的独特特征","可选：文件名提供的辅助线索，明确其来源"]}}
+confidence为标题和题材的0至1置信度；placeCandidate.confidence独立反映地标判断可靠程度，不是事实核验。0.85以上表示多项独特特征吻合；0.6至0.85表示有合理依据但仍需核实；低于0.6表示较弱候选。缺乏依据时返回placeCandidate:null。不要因为标题很确定就把地点置信度也设为很高。
 题材可多选，仅限山川、河流、湖泊、海岸、森林、草原、沙漠、戈壁、日出日落、云雾星空、城市风光、建筑地标、其他。
-城市和地标必须有明确的独特建筑、可读文字或GPS等依据。普通山水、森林、日落不能据此推断城市；不确定就留空，地点置信度为0，不要把“像某地”当成确认。GPS只能辅助判断，没有逆地理编码或检索能力，不宣称已核实地址。用户给出的地点仅作背景，不提高视觉置信度。画面描述不要混入未确认的候选城市和地标。
-不要返回takenAt或gps，不要从季节、光线、照片内容猜拍摄日期；日期由系统读取EXIF或用户填写。`;
+候选城市和景点只写在placeCandidate里，不混入description或shareText。证据简洁具体，最多3条，不输出长篇推理。
+不要返回takenAt或gps，不从文件名、季节、光线猜拍摄日期；日期由系统读取EXIF或用户填写。GPS仅作辅助，不宣称做过逆地理编码。`;
+
 const confidence=value=>typeof value==='number'&&Number.isFinite(value)&&value>=0&&value<=1?value:null;
-export function normalizePlaceCandidate(value){if(!value||typeof value!=='object'||Array.isArray(value))return null;const city=typeof value.city==='string'?value.city.trim().slice(0,100):'',location=typeof value.location==='string'?value.location.trim().slice(0,150):'';if(!city&&!location)return null;return {city,location,confidence:confidence(value.confidence),evidence:Array.isArray(value.evidence)?value.evidence.filter(x=>typeof x==='string').map(x=>x.trim().slice(0,200)).filter(Boolean).slice(0,5):[]};}
+export function normalizePlaceCandidate(value){if(!value||typeof value!=='object'||Array.isArray(value))return null;const city=typeof value.city==='string'?value.city.trim().slice(0,100):'',location=typeof value.location==='string'?value.location.trim().slice(0,150):'';if(!city&&!location)return null;return {province:normalizeProvince(value.province),city,location,confidence:confidence(value.confidence),evidence:Array.isArray(value.evidence)?value.evidence.filter(x=>typeof x==='string').map(x=>x.trim().slice(0,200)).filter(Boolean).slice(0,5):[]};}
 export function normalizeLandscapeRecognition(value){if(!value||typeof value.title!=='string'||!value.title.trim()||!Array.isArray(value.tags))throw Error('Invalid recognition');const score=confidence(value.confidence);return {...(score!==null?{confidence:score}:{}),title:value.title.trim().slice(0,100),tags:[...new Set(value.tags.filter(tag=>landscapeTags.includes(tag)))],description:typeof value.description==='string'?value.description.trim().slice(0,1500):'',shareText:typeof value.shareText==='string'?value.shareText.trim().slice(0,1500):'',placeCandidate:normalizePlaceCandidate(value.placeCandidate)};}
