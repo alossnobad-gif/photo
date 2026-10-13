@@ -38,7 +38,7 @@ export const landscapePrompt=`你是风光摄影整理助手。仅依据图片�
 返回一个JSON对象，不要markdown：
 {"title":"20字内中文摄影标题","tags":["题材"],"description":"80至150字画面描述","shareText":"简短自然的分享文案，不含未经确认的地名","confidence":0.0,"placeCandidate":{"city":"城市或地区，不能确定则空字符串","location":"可辨认的具体地标名称，不能确定则空字符串","confidence":0.0,"evidence":["可见的地标特征或照片GPS依据"]}}
 confidence为标题和题材的0至1置信度；placeCandidate.confidence单独评估城市和地标，都是模型自评而非事实核验。
-题材可多选，仅限山川、河流、湖泊、海岸、森林、草原、日出日落、云雾星空、城市风光、建筑地标、其他。
+题材可多选，仅限山川、河流、湖泊、海岸、森林、草原、沙漠、戈壁、日出日落、云雾星空、城市风光、建筑地标、其他。
 城市和地标必须有明确的独特建筑、可读文字或GPS等依据。普通山水、森林、日落不能据此推断城市；不确定就留空，地点置信度为0，不要把“像某地”当成确认。GPS只能辅助判断，没有逆地理编码或检索能力，不宣称已核实地址。用户给出的地点仅作背景，不提高视觉置信度。画面描述不要混入未确认的候选城市和地标。
 不要返回takenAt或gps，不要从季节、光线、照片内容猜拍摄日期；日期由系统读取EXIF或用户填写。`;
 const confidence=value=>typeof value==='number'&&Number.isFinite(value)&&value>=0&&value<=1?value:null;
