@@ -1,3 +1,5 @@
+import {compressJson} from './json-compression.js';
+import {mountPhotoPreviews} from './photo-preview.js';
 import {recognitionFilename,saveUploadFilename,filenameGuidance} from './recognition-filename.js';
 import {recognitionOptions} from './recognition-options.js';
 import {mountPhotoLibrary} from './photo-library.js';
@@ -16,7 +18,8 @@ import express from 'express';import multer from 'multer';import fs from 'node:f
 const root=process.cwd(), data=path.join(root,'.data');await fs.mkdir(path.join(data,'photos'),{recursive:true});
 try{const result=await backfillPhotoDates(data);if(result.checked)console.info('Photo dates restored',result);}catch(e){console.error('Photo date restoration failed',e.code||e.name);}
 const settings=await createSettings(data);
-const app=express();app.set('trust proxy','loopback');app.use(express.json({limit:'100kb'}));app.use('/photos',express.static(path.join(data,'photos')));
+const app=express();app.set('trust proxy','loopback');app.use(express.json({limit:'100kb'}));app.use('/api',compressJson);app.use('/photos',express.static(path.join(data,'photos')));
+mountPhotoPreviews(app,data);
 const upload=multer({storage:multer.memoryStorage(),limits:{fileSize:50*1024*1024},fileFilter:(req,f,cb)=>cb(null,['image/jpeg','image/png','image/webp'].includes(f.mimetype))});
 async function read(){try{return JSON.parse(await fs.readFile(path.join(data,'collection.json'),'utf8')).map(item=>applyCatalogue(normalizeClassification(item)));}catch(e){if(e.code==='ENOENT')return [];throw e;}}
 const saveLandscape=mountLandscapes(app,data);
