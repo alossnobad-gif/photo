@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {selectShareItems} from '../src/share-selection.js';
+import {summarizeCollection} from '../src/collection-stats.js';
+const items=[{id:'a',name:'白鹭',latin:'Egretta garzetta',category:'鸟类',rarity:'常见',protection:'国家二级'},{id:'b',name:'黑鹳',latin:'Ciconia nigra',category:'鸟类',rarity:'稀有',protection:'国家一级'},{id:'c',name:'大熊猫',latin:'Ailuropoda melanoleuca',category:'动物',rarity:'稀有',protection:'国家一级'}];
+test('share selection combines classification, rarity, protection, name and explicit choice without mutating collection',()=>{const before=JSON.stringify(items);assert.deepEqual(selectShareItems(items,{category:'鸟类',sort:'protection'}).map(x=>x.id),['b','a']);assert.deepEqual(selectShareItems(items,{category:'鸟类',rarity:'稀有',protection:'国家一级',query:'CICONIA'}).map(x=>x.id),['b']);assert.equal(selectShareItems(items,{ids:[]}).length,0);assert.deepEqual(selectShareItems(items,{ids:['a'],sort:'rare'}).map(x=>x.id),['a']);assert.equal(summarizeCollection(selectShareItems(items,{category:'鸟类'})).total,2);assert.equal(JSON.stringify(items),before);});
