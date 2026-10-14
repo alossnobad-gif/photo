@@ -24,7 +24,7 @@
 | COL-02 | 稀有度 / 保护等级，离线名录匹配 | 已实现，名录需版本维护 | protection-catalogue.js、catalogue 测试；data/catalogue/README.md |
 | COL-03 | 分类搜索、拍摄/入库/稀有度/保护排序 | 已实现 | collection-sort.js；collection-sort 测试 |
 | COL-04 | 统计、目标、探索记录、分享海报 | 已实现 | Statistics.jsx、collection-stats.js、share-poster.js |
-| SHARE-01 | 生成前筛选/排序、物种勾选、自定义封面与标题 | 已实现 | ShareDialog.jsx、share-selection.js；share-selection 测试；scripts/check-share-ui.mjs |
+| SHARE-01 | 生成前筛选/排序、物种勾选、自定义封面与标题 | 已实现 | ShareDialog.jsx、share-selection.js、share-image.js；筛选/图片加载测试；scripts/check-share-ui.mjs（原图不可用场景） |
 | LAN-01 | 风光识别，标题文案，日期，地点编辑 | 已实现，准确性依赖模型 | Landscapes.jsx、landscapes.js；landscapes 测试 |
 | LAN-02 | 城市补省份、题材、筛选、解锁统计 | 已实现 | city-provinces.js、landscape-progress.js；对应测试 |
 | LAN-03 | 删除记录，详情底部入口 | 已实现 | Landscapes.jsx、landscapes.js；浏览器检查 |
