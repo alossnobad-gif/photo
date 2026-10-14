@@ -8,6 +8,7 @@
 | LIB-02 | RAW / JPG 独立导入，索尼 A7R V | 有限支持 | LibRaw 需安装，docs/photo-library.md；实际相机格式已做过开发验证 |
 | LIB-03 | 搜索、类型、提交状态、上传排序 | 已实现 | PhotoLibrary.jsx、library-recognition.js、library-sort.js；相关测试 |
 | LIB-04 | 双类型状态，默认未提交，切页缓存 | 已实现，需持续回归 | PhotoLibrary.jsx；library-status 测试；切页浏览器检查 |
+| META-01 | EXIF 机身/镜头/光圈/快门/ISO/焦距，缩略图信息水印 | 已实现，取决于原件是否有 EXIF | local-photo.js、camera-equipment.js、photo-equipment.js、CameraWatermark.jsx；camera-equipment 测试及 scripts/check-camera-ui.mjs |
 | LIB-05 | 覆盖编辑、原件下载、删除/改名 | 已实现 | server/photo-library.js；photo-library 测试 |
 | EDIT-01 | 可移动裁切框，原图比例，旋转翻转 | 已实现 | PhotoCropper.jsx、PhotoLibrary.jsx；浏览器操作检查 |
 | EDIT-02 | 基础参数、滤镜、强度、对比重置 | 已实现 | photo-adjustments.js、photo-presets.js；像素测试 |
