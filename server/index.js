@@ -1,3 +1,4 @@
+import {mountBaiduDrive} from './baidu-drive.js';
 import {mountPhotoEquipment} from './photo-equipment.js';
 import {normalizeEquipment} from '../src/camera-equipment.js';
 import {compressJson} from './json-compression.js';
@@ -99,7 +100,8 @@ const recognitionQueue=await createRecognitionQueue(data,{identify:body=>invoke(
  const saved=await invoke(kind==='landscape'?saveLandscape:saveCollectionHandler,body);if(kind==='species'&&body.repairLandscapeId)await saveLandscape.removeMisclassified(body.repairLandscapeId,body.photo);return kind==='landscape'?saved.item:saved;
 }});
 mountRecognitionQueue(app,recognitionQueue);
-await mountPhotoLibrary(app,data,{recognitionQueue});
+const libraryService=await mountPhotoLibrary(app,data,{recognitionQueue});
+await mountBaiduDrive(app,data,{importFile:libraryService.importFile});
 if(process.env.NODE_ENV==='production'){app.use(express.static(path.join(root,'dist')));app.get('/{*path}',(req,res)=>res.sendFile(path.join(root,'dist','index.html')));}else{const {createServer}=await import('vite');const vite=await createServer({server:{middlewareMode:true},appType:'spa'});app.use(vite.middlewares);}
 app.use((err,req,res,next)=>{console.error(err.name,err.message);res.status(err.code==='LIMIT_FILE_SIZE'?413:400).json({error:err.code==='LIMIT_FILE_SIZE'?'照片最大支持 50 MB':'操作失败，请稍后重试。'});});
 app.listen(Number(process.env.PORT)||3000,process.env.NODE_ENV==='production'?'127.0.0.1':(process.env.HOST||'0.0.0.0'),()=>console.log('Nature compendium listening on port '+(process.env.PORT||3000)));
