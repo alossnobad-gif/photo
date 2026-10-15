@@ -14,7 +14,7 @@ export default function RecognitionQueue({jobs,refresh,Modal,onBatchUpload,onRem
  async function stopTask(id){setBusy(true);setError('');try{await request(id?'/api/recognition-queue/'+id+'/stop':'/api/recognition-queue/stop-all');await refresh();}catch(e){setError(e.message);}finally{setBusy(false);}}
  async function deleteBatch(){setBusy(true);setError('');try{const result=await request('/api/recognition-queue/delete-batch',{ids:checked});setChecked(result.skipped||[]);setBatchConfirm(false);if(result.skipped?.length)setError('正在入库的任务已跳过，请稍后删除');onRemoved(result.removed||[]);}catch(e){setError(e.message);}finally{setBusy(false);}}
  const [kindFilter,setKindFilter]=useState('all');
- const [filter,setFilter]=useState('all'),[selected,setSelected]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[deleting,setDeleting]=useState(null);
+ const [filter,setFilter]=useState('pending'),[selected,setSelected]=useState(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[deleting,setDeleting]=useState(null);
  async function retry(job){setBusy(true);setError('');try{await request('/api/recognition-queue/'+job.id+'/retry');await refresh();}catch(e){setError(e.message);}finally{setBusy(false);}}
  async function remove(job){setBusy(true);setError('');try{await request('/api/recognition-queue/'+job.id+'/delete');setDeleting(null);if(selected?.id===job.id)setSelected(null);setChecked(ids=>ids.filter(id=>id!==job.id));onRemoved([job.id]);}catch(e){setError(e.message);}finally{setBusy(false);}}
  const items=jobs.filter(j=>kindFilter==='all'||(j.kind||'species')===kindFilter).filter(j=>filter==='all'||(filter==='review'?j.status==='review':filter==='completed'?j.status==='completed':j.status!=='completed'));
