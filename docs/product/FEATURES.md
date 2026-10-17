@@ -1,6 +1,6 @@
 # 功能清单
 
-更新：2026-10-14，代码基线 a4c2a92。已实现表示仓库有实现，不表示已确认当前服务器版本或真实数据全部正确。
+更新：2026-10-17，初始代码基线 a4c2a92，后续增量见变更台账。已实现表示仓库有实现，不表示已确认当前服务器版本或真实数据全部正确。
 
 | ID | 模块 / 能力 | 状态 | 代码 / 检查依据 |
 | --- | --- | --- | --- |
@@ -14,6 +14,7 @@
 | EDIT-02 | 基础参数、滤镜、强度、对比重置 | 已实现 | photo-adjustments.js、photo-presets.js；像素测试 |
 | EDIT-03 | 电脑宽窗口/手机编辑、竖图预览 | 已实现，需持续回归 | CSS / 浏览器 1440 与 390 宽验证 |
 | QUE-01 | 明确物种/风光提交，任务回执 | 已实现 | recognition-queue.js；queue-entry 测试 |
+| QUE-06 | 物种/风光批量上传，本地与图库双来源 | 已实现，布局回归已补测 | BatchUpload.jsx、batch-upload.css；scripts/check-batch-upload-ui.mjs 覆盖电脑/手机双来源及任务类型 |
 | QUE-02 | 持久化，串行，重试，自动/手动入库 | 已实现 | recognition-queue.js；recognition-queue 测试 |
 | QUE-03 | 单任务/全部停止，删除/批量删除 | 已实现 | recognition-queue.js、RecognitionQueue.jsx；相关测试 |
 | QUE-04 | 已完成结果跳转 | 已实现但有已知问题 | 切导航后详情可能被重置，见 CHANGELOG.md |
