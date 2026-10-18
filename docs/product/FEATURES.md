@@ -59,3 +59,6 @@
 | LAND-DATE | 风光拍摄日期范围筛选 | 已实现 | Landscapes.jsx；起止包含边界、缺失日期、城市组合与清除检查 |
 | LIB-SELECT | 全选当前筛选照片，识别只提交可见选中项 | 已实现 | PhotoLibrary.jsx；部分选中、全选／取消、搜索及状态范围验证 |
 | LAND-DEDUPE | 风光路径及文件内容去重 | 已实现，精确文件比较 | server/landscapes.js；并发保存、不同路径相同内容、同地不同照片测试；不进行历史数据清理或视觉相似识别 |
+
+
+LAND-SORT（2026-10-18）：风光拍摄时间正反向排序已实现，控件与图鉴排序一致，默认最新拍摄并在浏览器记忆选择。缺失日期始终靠后；src/landscape-sort.js、server/landscape-sort.test.js、Landscapes.jsx。
