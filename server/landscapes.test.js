@@ -22,7 +22,8 @@ test('landscape API persists multiple photos per city, edits safely, serializes 
  try{
  assert.equal((await send('/api/landscapes',input,{Origin:'https://elsewhere.invalid'})).status,403);
  assert.equal((await send('/api/landscapes',{...input,photo:'/photos/def.jpeg'})).status,400);
- const responses=await Promise.all([send('/api/landscapes',{...input,cover:true}),send('/api/landscapes',{...input,title:'第二张',cover:true})]);assert.ok(responses.every(r=>r.ok));let list=await (await fetch(base+'/api/landscapes')).json();assert.equal(list.length,2);assert.equal(list.filter(x=>x.cover).length,1);
+ await fs.writeFile(path.join(dir,'photos/def.jpeg'),'different photograph');
+ const responses=await Promise.all([send('/api/landscapes',{...input,cover:true}),send('/api/landscapes',{...input,photo:'/photos/def.jpeg',title:'第二张',cover:true})]);assert.ok(responses.every(r=>r.ok));let list=await (await fetch(base+'/api/landscapes')).json();assert.equal(list.length,2);assert.equal(list.filter(x=>x.cover).length,1);
  const edited=await (await send('/api/landscapes/'+list[0].id,{...list[0],city:'阿坝',title:'山间湖泊'}, {},'PUT')).json();assert.equal(edited.item.city,'阿坝');assert.equal(edited.item.created,list[0].created);
  list=JSON.parse(await fs.readFile(path.join(dir,'landscapes.json'),'utf8'));assert.equal(list[0].title,'山间湖泊');assert.equal(await fs.readFile(path.join(dir,'photos/abc.jpeg'),'utf8'),'original');assert.equal((await send('/api/landscapes/missing',input,{},'PUT')).status,404);
  }finally{await new Promise(resolve=>server.close(resolve));await fs.rm(dir,{recursive:true,force:true});}
@@ -45,4 +46,12 @@ test('classification repair removes only the matching landscape record and prese
 test('batch delete removes only selected landscape records and preserves photo files',async()=>{
  const dir=await fs.mkdtemp(path.join(os.tmpdir(),'landscape-delete-'));const app=express();app.use(express.json());mountLandscapes(app,dir);const server=app.listen(0);await new Promise(r=>server.once('listening',r));const url=`http://127.0.0.1:${server.address().port}/api/landscapes/delete-batch`;
  try{await fs.mkdir(path.join(dir,'photos'));await fs.writeFile(path.join(dir,'photos/a.jpeg'),'photo');await fs.writeFile(path.join(dir,'landscapes.json'),JSON.stringify([{id:'a',photo:'/photos/a.jpeg'},{id:'b'}]));const send=(body,headers={})=>fetch(url,{method:'POST',headers:{'Content-Type':'application/json',...headers},body:JSON.stringify(body)});assert.equal((await send({ids:['a']},{Origin:'https://other.example'})).status,403);assert.equal((await send({ids:'a'})).status,400);const result=await send({ids:['a','a','missing']});assert.deepEqual(await result.json(),{removed:['a']});assert.deepEqual(JSON.parse(await fs.readFile(path.join(dir,'landscapes.json'),'utf8')),[{id:'b'}]);await fs.access(path.join(dir,'photos/a.jpeg'));assert.deepEqual(await (await send({ids:['a']})).json(),{removed:[]});}finally{await new Promise(r=>server.close(r));await fs.rm(dir,{recursive:true,force:true});}
+});
+
+test('landscape saves deduplicate paths and identical uploads without merging different photos at the same place',async()=>{
+ const dir=await fs.mkdtemp(path.join(os.tmpdir(),'landscape-dedupe-'));await fs.mkdir(path.join(dir,'photos'));
+ for(const [file,content] of [['abc','same photo'],['def','same photo'],['aaa','different photo']])await fs.writeFile(path.join(dir,'photos',file+'.jpeg'),content);
+ const app=express();app.use(express.json());mountLandscapes(app,dir);const server=app.listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));
+ const send=async body=>{const r=await fetch(`http://127.0.0.1:${server.address().port}/api/landscapes`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});assert.equal(r.status,200);return r.json();};
+ try{const results=await Promise.all([send(input),send({...input,title:'重复标题'}),send({...input,photo:'/photos/def.jpeg'})]);assert.equal(new Set(results.map(r=>r.item.id)).size,1);assert.equal(results[1].duplicate,true);assert.equal(results[2].duplicate,true);assert.equal(results[2].item.title,input.title);assert.equal(results[2].item.created,results[0].item.created);const different=await send({...input,photo:'/photos/aaa.jpeg'});assert.equal(different.items.length,2);assert.notEqual(different.item.id,results[0].item.id);for(const f of ['abc','def','aaa'])await fs.access(path.join(dir,'photos',f+'.jpeg'));}finally{await new Promise(r=>server.close(r));await fs.rm(dir,{recursive:true,force:true});}
 });

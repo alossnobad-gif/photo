@@ -2,7 +2,8 @@ import {provinceForCity} from '../src/city-provinces.js';
 import {normalizeProvince} from '../src/landscape-progress.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import {randomUUID} from 'node:crypto';
+import {randomUUID,createHash} from 'node:crypto';
+import {createReadStream} from 'node:fs';
 import {landscapeTags} from '../src/landscape-data.js';
 export function normalizeLandscape(input,existing){
  const fail=message=>{throw Object.assign(new Error(message),{status:400});};
@@ -19,6 +20,8 @@ export function normalizeLandscape(input,existing){
  return {gps:gps?{latitude:gps.latitude,longitude:gps.longitude}:null,id:existing?.id||randomUUID(),photo,title,province:province||provinceForCity(city),city,location,note,takenAt,description,shareText,placeCandidate:normalizePlaceCandidate(input.placeCandidate),tags:[...new Set(input.tags)],cover:input.cover===true,created:existing?.created||new Date().toISOString(),updated:new Date().toISOString()};
 }
 export function mountLandscapes(app,data){
+ const hashes=new Map();
+ async function contentHash(photo,expectedSize){const file=path.join(data,photo);try{const stat=await fs.stat(file);if(expectedSize!==undefined&&stat.size!==expectedSize)return null;const key=file+':'+stat.size+':'+stat.mtimeMs+':'+stat.ctimeMs;if(hashes.has(key))return hashes.get(key);const hash=createHash('sha256');for await(const chunk of createReadStream(file))hash.update(chunk);const value=hash.digest('hex');if(hashes.size>2000)hashes.clear();hashes.set(key,value);return value;}catch(e){if(e.code==='ENOENT')return null;throw e;}}
  const filename=path.join(data,'landscapes.json');let queue=Promise.resolve();
  const read=async()=>{try{return JSON.parse(await fs.readFile(filename,'utf8'));}catch(e){if(e.code==='ENOENT')return [];throw e;}};
  app.get('/api/landscapes',async(req,res,next)=>{try{res.set('Cache-Control','no-store').json((await read()).map(item=>({...item,province:item.province||provinceForCity(item.city)})));}catch(e){next(e);}});
@@ -29,6 +32,7 @@ export function mountLandscapes(app,data){
   const job=queue.then(async()=>{const items=await read();const existing=req.params.id?items.find(x=>x.id===req.params.id):null;if(req.params.id&&!existing)return res.status(404).json({error:'这张风光记录已不存在'});
    let item;try{item=normalizeLandscape(req.body,existing);}catch(e){if(e.status)return res.status(e.status).json({error:e.message});throw e;}
    try{await fs.access(path.join(data,item.photo));}catch(e){if(e.code==='ENOENT')return res.status(400).json({error:'照片文件不存在，请重新上传'});throw e;}
+   if(!existing){const byteLength=(await fs.stat(path.join(data,item.photo))).size,hash=await contentHash(item.photo);for(const saved of items){if(saved.photo===item.photo||hash&&hash===await contentHash(saved.photo,byteLength))return res.json({item:saved,items,duplicate:true});}}
    const result=[item,...items.filter(x=>x.id!==item.id).map(x=>item.cover&&x.city===item.city?{...x,cover:false}:x)];
    const temp=filename+'.tmp';await fs.writeFile(temp,JSON.stringify(result,null,2),{mode:0o600});await fs.rename(temp,filename);res.json({item,items:result});
   });queue=job.catch(()=>{});job.catch(next);
