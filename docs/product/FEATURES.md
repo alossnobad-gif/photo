@@ -62,3 +62,14 @@
 
 
 LAND-SORT（2026-10-18）：风光拍摄时间正反向排序已实现，控件与图鉴排序一致，默认最新拍摄并在浏览器记忆选择。缺失日期始终靠后；src/landscape-sort.js、server/landscape-sort.test.js、Landscapes.jsx。
+
+2026-10-18 自动／手动增量：
+
+| ID | 能力 | 状态 | 依据 |
+| --- | --- | --- | --- |
+| REC-METHOD | 图库、单张、批量选择自动／手动，整批一次选择 | 已实现 | RecognitionMethod.jsx、BatchUpload、PhotoLibrary、main、Landscapes；双模式浏览器检查 |
+| REC-JSON | 双类型 JSON 填表、中文字段、代码块、白名单校验 | 已实现 | manual-recognition.js；manual-recognition.test.js |
+| QUEUE-MANUAL | 不调用模型的持久化草稿、失败转手动、明确改用自动 | 已实现 | recognition-queue.js；0 provider calls、重启、日期及晚到结果测试 |
+| HELP-01 | 独立识别帮助、双类型提示词复制与降级选择 | 已实现 | RecognitionHelp.jsx；1440／390 浏览器 |
+
+手动批量共用方式，结果逐张粘贴；不支持 JSON 数组或自动图文匹配。复制权限依浏览器设置，可手动复制展示文字。

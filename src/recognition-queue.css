@@ -8,3 +8,4 @@
 
 .queue-photo-placeholder{height:180px;background:#e8e4d8}
 .queue-photo-comparison>p{font:13px/1.8 system-ui;color:#7d826e}.queue-photo-comparison .compare img{width:100%;height:220px;object-fit:contain;background:#e8e5d8;border-radius:6px}.queue-photo-comparison .compare small{display:block;color:#858b79;font:11px system-ui;margin-top:5px}@media(max-width:600px){.queue-photo-comparison .compare img{height:150px}}
+.queue-file-name{overflow-wrap:anywhere;font:12px/1.6 system-ui;color:#7b806e}
