@@ -36,6 +36,32 @@ export async function mountPhotoLibrary(app,data,{recognitionQueue}={}){
  const item=await mutate(async items=>{const index=items.findIndex(x=>x.id===req.params.id);if(index<0)throw Error('照片已不存在');previous={...items[index]};assertIdle(previous.photo);await removeHistory(previous.photo);oldPhoto=path.join(data,previous.photo);backup=oldPhoto+'.'+randomUUID()+'.backup';await fs.copyFile(oldPhoto,backup);const item={...previous,thumbnail:thumb,name:previous.name.replace(/\.[^.]+$/,'')+'.'+(outputFormat==='jpeg'?'jpg':outputFormat),raw:false,type:'edited',format:outputFormat,size:(await fs.stat(path.join(data,'photos',file))).size,width:dimensions.width,height:dimensions.height,recipe,updated:new Date().toISOString()};delete item.sourceFile;delete item.sourceName;delete item.parentId;await fs.rename(path.join(data,'photos',file),oldPhoto);items[index]=item;return item;});committed=true;
  await cleanup({...previous,photo:undefined}).catch(e=>console.error('Library old source cleanup failed',e.code));res.json(item);
  }catch(e){if(backup&&!committed)await fs.copyFile(backup,oldPhoto).catch(()=>{});if(file)await fs.rm(path.join(data,'photos',file),{force:true}).catch(()=>{});if(thumb&&!committed)await fs.rm(path.join(data,thumb),{force:true}).catch(()=>{});res.status(400).json({error:e.message});}finally{if(backup)await fs.rm(backup,{force:true}).catch(()=>{});}});});
+ app.post('/api/library/delete-batch',async(req,res)=>{
+  if(!allowed(req))return res.status(403).json({error:'请从本站删除'});
+  let release;const ids=req.body?.ids;if(!Array.isArray(ids)||!ids.length||ids.length>2000||ids.some(id=>typeof id!=='string'||!id||id.length>100))return res.status(400).json({error:'请选择 1 至 2000 张照片'});
+  try{
+   const wanted=new Set(ids),removed=[],skipped=[];
+   await mutate(async items=>{
+    const active=new Set((recognitionQueue?.list()||[]).filter(j=>['queued','processing','saving','confirming'].includes(j.status)).map(j=>j.photo));
+    for(const item of items)if(wanted.has(item.id)){if(active.has(item.photo))skipped.push({id:item.id,name:item.name,reason:'正在识别，请先停止队列任务'});else removed.push(item);}
+    if(!removed.length)return;release=recognitionQueue?.reservePhotos?.(removed.map(item=>item.photo));
+    const removedIds=new Set(removed.map(item=>item.id));const next=[...new Set([...deleted,...removed.map(item=>item.photo)])];
+    await fs.writeFile(deletedFile+'.tmp',JSON.stringify(next),{mode:0o600});await fs.rename(deletedFile+'.tmp',deletedFile);deleted=next;
+    const keep=items.filter(item=>!removedIds.has(item.id));items.splice(0,items.length,...keep);
+   });
+   let freedBytes=0,cleanupPending=false;
+   if(removed.length)try{
+    const photos=new Set(removed.map(item=>item.photo));const history=(recognitionQueue?.list()||[]).filter(j=>photos.has(j.photo)&&!['queued','processing','saving','confirming'].includes(j.status));
+    if(history.length){if(recognitionQueue.removeMany)await recognitionQueue.removeMany(history.map(j=>j.id),{preservePhotos:true});else for(const job of history)await recognitionQueue.remove(job.id);}
+    const library=await read();const references=[...library,...(recognitionQueue?.list()||[])];
+    for(const file of ['collection.json','landscapes.json']){try{references.push(...JSON.parse(await fs.readFile(path.join(data,file),'utf8')));}catch(e){if(e.code!=='ENOENT')throw e;}}
+    const usedPhotos=new Set(references.flatMap(x=>[x.photo,x.thumbnail,x.originalPhoto])),usedSources=new Set(references.map(x=>x.sourceFile));const files=new Set();
+    for(const item of removed){for(const photo of [item.photo,item.thumbnail])if(typeof photo==='string'&&/^\/photos\/[a-f0-9-]+\.(jpeg|png|webp)$/.test(photo)&&!usedPhotos.has(photo))files.add(path.join(data,photo));if(typeof item.sourceFile==='string'&&/^[a-f0-9-]+\.[a-z0-9]+$/.test(item.sourceFile)&&!usedSources.has(item.sourceFile))files.add(path.join(originals,item.sourceFile));}
+    for(const file of files)try{const stat=await fs.stat(file);await fs.unlink(file);freedBytes+=stat.size;}catch(e){if(e.code!=='ENOENT'){cleanupPending=true;console.error('Library batch file cleanup failed',e.code);}}
+   }catch(e){cleanupPending=true;console.error('Library batch cleanup deferred',e.code||e.name);}
+   const found=new Set([...removed,...skipped].map(item=>item.id));res.json({removed:removed.map(item=>item.id),skipped,missing:[...wanted].filter(id=>!found.has(id)),freedBytes,cleanupPending});
+  }catch(e){res.status(400).json({error:e.message});}finally{release?.();}
+ });
  app.post('/api/library/:id/delete',async(req,res)=>{if(!allowed(req))return res.status(403).json({error:'请从本站删除'});try{const removed=await mutate(async items=>{const index=items.findIndex(x=>x.id===req.params.id);if(index<0)throw Error('照片已不存在');const item=items[index];assertIdle(item.photo);await removeHistory(item.photo);const next=[...new Set([...deleted,item.photo])];await fs.writeFile(deletedFile+'.tmp',JSON.stringify(next),{mode:0o600});await fs.rename(deletedFile+'.tmp',deletedFile);deleted=next;items.splice(index,1);return item;});await cleanup(removed).catch(e=>console.error('Library deletion cleanup failed',e.code));res.json({removed:removed.id});}catch(e){res.status(400).json({error:e.message});}});
  app.post('/api/library/:id/rename',async(req,res)=>{if(!allowed(req))return res.status(403).json({error:'请从本站操作'});try{const item=await mutate(items=>{const item=items.find(x=>x.id===req.params.id);if(!item)throw Error('照片不存在');const name=String(req.body.name||'').trim();if(!name||name.length>160)throw Error('请填写照片名称');item.name=name;return item;});res.json(item);}catch(e){res.status(400).json({error:e.message});}});
  return {importFile:async(file,cloudSource)=>{return new Promise((resolve,reject)=>{let status=200;importRequest({file,cloudSource},{status(value){status=value;return this;},json(value){if(status>=400)reject(Error(value.error));else resolve(value);}}).catch(reject);});}};
