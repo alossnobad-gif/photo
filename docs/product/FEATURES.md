@@ -1,6 +1,6 @@
 # 功能清单
 
-更新：2026-10-20，初始代码基线 a4c2a92，后续增量见变更台账。已实现表示仓库有实现，不表示已确认当前服务器版本或真实数据全部正确。
+更新：2026-10-25，初始代码基线 a4c2a92，后续增量见变更台账。已实现表示仓库有实现，不表示已确认当前服务器版本或真实数据全部正确。
 
 | ID | 模块 / 能力 | 状态 | 代码 / 检查依据 |
 | --- | --- | --- | --- |
@@ -17,7 +17,7 @@
 | QUE-06 | 物种/风光批量上传，本地与图库双来源 | 已实现，布局回归已补测 | BatchUpload.jsx、batch-upload.css；scripts/check-batch-upload-ui.mjs 覆盖电脑/手机双来源及任务类型 |
 | QUE-02 | 持久化，串行，重试，自动/手动入库 | 已实现 | recognition-queue.js；recognition-queue 测试 |
 | QUE-03 | 单任务/全部停止，删除/批量删除 | 已实现 | recognition-queue.js、RecognitionQueue.jsx；相关测试 |
-| QUE-04 | 已完成结果跳转 | 已实现但有已知问题 | 切导航后详情可能被重置，见 CHANGELOG.md |
+| QUE-04 | 已完成结果跳转、过期收藏保护 | 已实现，2026-10-25 回归通过 | 跳转前读取当前收藏，导航后打开详情；已删收藏不从任务快照恢复 |
 | QUE-05 | 队列缓存缩略图及错误回退 | 已实现 | queue-thumbnail.test.js 使用真实 .data 结构 |
 | AI-01 | 千问平台/百炼配置及专用提示词 | 已实现 | settings.js、recognition-options.js、recognition-result.js、landscapes.js |
 | AI-02 | 图片压缩、关闭支持模型的深度思考 | 已实现 | recognition-image、recognition-options 测试 |
@@ -78,3 +78,7 @@ LAND-SORT（2026-10-18）：风光拍摄时间正反向排序已实现，控件�
 | ID | 能力 | 状态 | 依据 |
 | --- | --- | --- | --- |
 | LIB-BULK-DELETE | 筛选全选批量删除、确认列表、进度、跳过活动任务、引用保护、释放空间反馈 | 已实现，开发验证 | PhotoLibrary.jsx、photo-library.js、recognition-queue.js；真实 .data API 与电脑／手机操作，保留源文件共享引用及重启删除标记 |
+
+| ID | 能力 | 状态 | 依据 |
+| --- | --- | --- | --- |
+| COL-DELETE | 物种详情底部单条删除、二次确认、统计同步、关联照片保留 | 已实现，开发验证 | collection-delete.js、collection-delete.test.js、main.jsx；1440／390 浏览器实际 API |
