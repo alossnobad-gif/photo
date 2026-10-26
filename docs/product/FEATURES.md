@@ -86,3 +86,9 @@ LAND-SORT（2026-10-18）：风光拍摄时间正反向排序已实现，控件�
 | ID | 能力 | 状态 | 依据 |
 | --- | --- | --- | --- |
 | CLOUD-CANCEL | 换目录、分页、关闭取消旧预览；缓存直出、有限并发、放大预览独立通道与重试 | 已实现，开发验证 | preview-pool.js、use-cloud-preview.js、baidu-drive.js；调度／实际 HTTP 中止测试、电脑手机慢上游压力验证 |
+
+| ID | 能力 | 状态 | 依据 |
+| --- | --- | --- | --- |
+| LIB-JPG-WORK | 新导入 4096／Q90 JPG 工作图、原件与 EXIF 保留、既有覆盖清理规则 | 已实现 | photo-working.js、photo-library.js；实际本地／云盘共用导入与识别 1600 像素测试 |
+| EDIT-PREVIEW | 2048 编辑预览，保存映射 4096 工作图，切换原图不丢调整 | 已实现，电脑／手机验证 | library-images.js、PhotoCropper.jsx、OriginalPhoto.jsx；完整保存、颜色方向、元数据及缓存测试 |
+| EDIT-ORIGINAL | 按需全像素 JPG 查看／100%，RAW 完整显影，可取消 | 已实现，RAW 新路径使用解码替身验证 | 原件存在时完整预览；原件清理后回退当前全尺寸；未新增 A7R V 实机 RAW 验证 |

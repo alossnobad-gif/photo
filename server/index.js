@@ -1,3 +1,4 @@
+import {mountLibraryImages} from './library-images.js';
 import {collectionDeleteHandler} from './collection-delete.js';
 import {mountBaiduDrive} from './baidu-drive.js';
 import {mountPhotoEquipment} from './photo-equipment.js';
@@ -24,6 +25,7 @@ try{const result=await backfillPhotoDates(data);if(result.checked)console.info('
 const settings=await createSettings(data);
 const app=express();app.set('trust proxy','loopback');app.use(express.json({limit:'100kb'}));app.use('/api',compressJson);app.use('/photos',express.static(path.join(data,'photos')));
 mountPhotoPreviews(app,data);
+mountLibraryImages(app,data);
 const rememberEquipment=mountPhotoEquipment(app,data);
 const upload=multer({storage:multer.memoryStorage(),limits:{fileSize:50*1024*1024},fileFilter:(req,f,cb)=>cb(null,['image/jpeg','image/png','image/webp'].includes(f.mimetype))});
 async function read(){try{return JSON.parse(await fs.readFile(path.join(data,'collection.json'),'utf8')).map(item=>applyCatalogue(normalizeClassification(item)));}catch(e){if(e.code==='ENOENT')return [];throw e;}}

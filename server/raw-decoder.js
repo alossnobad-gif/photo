@@ -6,4 +6,4 @@ const decoderEnvironment=Object.fromEntries(['PATH','LD_LIBRARY_PATH','LANG','LC
 const options={timeout:120000,maxBuffer:10000,env:{...decoderEnvironment,OMP_NUM_THREADS:'2'}};
 export async function rawAvailable(){try{await execute('python3',[script,'--check'],{...options,timeout:5000});return true;}catch{return false;}}
 let running=Promise.resolve();
-export function decodeRaw(source,destination){const task=running.then(async()=>{try{const {stdout}=await execute('python3',[script,source,destination],options);return JSON.parse(stdout);}catch{throw Error('RAW 显影失败：文件可能损坏、相机格式尚未支持，或超过 8000 万像素。可先导出 JPG 再导入。');}});running=task.catch(()=>{});return task;}
+export function decodeRaw(source,destination,{signal}={}){const task=running.then(async()=>{try{signal?.throwIfAborted();const {stdout}=await execute('python3',[script,source,destination],{...options,...(signal?{signal}:{})});return JSON.parse(stdout);}catch{if(signal?.aborted)throw signal.reason;throw Error('RAW 显影失败：文件可能损坏、相机格式尚未支持，或超过 8000 万像素。可先导出 JPG 再导入。');}});running=task.catch(()=>{});return task;}
