@@ -6,3 +6,13 @@ dist/
 
 # Locally installed RAW decoder
 vendor/
+
+# Private local configuration, deployment records and metadata snapshots
+.env.*
+!.env.example
+metadata-backup-*/
+.deployed-commit
+.deployed-at
+*.key
+*.p12
+*.pfx

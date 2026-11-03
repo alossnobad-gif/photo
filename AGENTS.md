@@ -1,5 +1,7 @@
 # 自然图鉴维护要求
 
+新会话先读 [长期交接手册](docs/operations/HANDOFF.md) 和 [发布手册](docs/operations/RELEASES.md)：其中记录阿里云服务器、路径、配置位置、固定版本更新命令、未知项与发布状态。不要依赖聊天记录。服务器信息变化和每次发布结果必须回写这些文件；不能提交密钥、令牌、密码哈希、私钥或真实业务数据。
+
 本项目已存有用户真实摄影资产。开始修改前阅读 docs/product/README.md、PRD.md、FEATURES.md、CHANGELOG.md；执行 docs/product/ITERATION.md 中与改动有关的检查。
 
 - 用户最新明确指令优先；需求改变时更新产品文档，不沿用已撤下的临时入口。
